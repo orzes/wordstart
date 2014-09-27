@@ -19,7 +19,7 @@ Class Student {
       return $db_result;
   }
 
-
+  
   function getStudent($studentID) {
     global $db;
     $sql='SELECT * FROM students WHERE studentID="'.$studentID.'" ';
