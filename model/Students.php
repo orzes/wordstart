@@ -5,72 +5,116 @@
   
 Class Student { 
 
-  public function __construct(){
+  public function __construct()
+  {
     // class variables are defined in constructor
     // in this application, all data is stored in the database
     // database table books: id title publisher price first_name last_name description
   }
   
   
-  function getStudents() {  
+  function getStudents() 
+  {  
       global $db; // $db is object of Class Db(), and is out of scope unless made global inside this method
-      $sql='SELECT * FROM students ORDER BY studentLast';  
-      $db_result=$db->query($sql);
-      return $db_result;
-  }
-
+		$query = 'SELECT * FROM students, parents, classrooms WHERE students.parentID = parents.parentID  AND students.classroomID=classrooms.classroomID';
+      try 
+      {
+			$statement = $db->prepare($query);
+			// $statement->bindValue(':category_id', $category_id);
+			$statement->execute();
+			//$result = $statement->fetchAll();
+			$statement->closeCursor();
+			return $result;
+      } 
+      catch (PDOException $e) 
+      {
+			$error_message = $e->getMessage();
+			display_db_error($error_message);
+      }
+  } // getStudents()	
   
-  function getStudent($studentID) {
+  function getStudent($studentID) 
+  {
     global $db;
-    $sql='SELECT * FROM students WHERE studentID="'.$studentID.'" ';
+$query= 'SELECT * FROM students WHERE studentID= :student_id';
+		   
+		try {
+			$statement = $db->prepare($query);
+			$statement->bindValue(':student_id', $student_id);
+			$statement->execute();
+			$result = $statement->fetch();
+			$statement->closeCursor();
+			return $result;
+		} catch (PDOException $e) {
+			$error_message = $e->getMessage();
+			display_db_error($error_message);
+		}
+  } // getStudent($student_id)
 
-    // used for testing 
-    print 'sql '.$sql; 
-    exit;
+    function addStudent($studentLast, $studentFirst, $parentID, $classroomID) 
+    {
+        global $db;
 
-    $db_result=$db->query($sql);
-    return $db_result;
-  }
+        $query='INSERT INTO students(studentLast, studentFirst, parentID, classroomID)
+                VALUES("'.$studentLast.'", "'.$studentFirst.'", "'.$parentID.'", "'.$classroomID.'")';
+
+        try 
+        {
+			$statement = $db->prepare($query);
+			$statement->execute();
+			$result = $statement->fetch();
+			$statement->closeCursor();
+			return $result;
+		} 
+        catch (PDOException $e) 
+        {
+			$error_message = $e->getMessage();
+			display_db_error($error_message);
+		}
+    }//end function addStudent
 
 
-  function addStudent($studentLast, $studentFirst, $parentID, $classID) {
-    global $db;
-    
-    $sql='INSERT INTO students(studentLast, studentFirst, parentID, classID)
-              VALUES("'.$studentLast.'", "'.$studentFirst.'", "'.$parentID.'", "'.$classID.'")';
-    
-    print 'Testing, addStudent sql '.$sql; 
-    exit;
-              
-    $db_result_set=$db->query($sql);    
-    return mysqli_affected_rows();
-  }
-
-
-  function updateStudent($studentID, $studentLast, $studentFirst, $parentID, $classID) {
+  function updateStudent($studentID, $studentLast, $studentFirst, $parentID, $classroomID) {
     global $db;  
     
-    $sql='UPDATE students SET studentLast="'.$studentLast.'", studentFirst="'.$studentFirst.'", parentID="'.$parentID.'", 
-    classID="'.$classID.'" WHERE studentID="'.$studentID.'" ';
+    $query= 'UPDATE students SET studentLast="'.$studentLast.'", studentFirst="'.$studentFirst.'", parentID="'.$parentID.'", 
+    classroomID="'.$classroomID.'" WHERE studentID="'.$studentID.'" ';
     
-    print 'Testing, updateBook sql'.$sql; 
-    exit;
-        
-    $db_result_set=$db->query($sql);
-    
-    return $db->affectedRows();
+        try 
+        {
+			$statement = $db->prepare($query);
+			$statement->bindValue(':student_id', $studentID);
+			$statement->execute();
+			$result = $statement->fetch();
+			$statement->closeCursor();
+			return $result;
+		} 
+        catch (PDOException $e) 
+        {
+			$error_message = $e->getMessage();
+			display_db_error($error_message);
+		}
   }
 
   function deleteStudent($studentID) {
     global $db;
     
-    $sql='DELETE FROM students WHERE studentID="'.$studentID.'" ';
+    $query='DELETE FROM students WHERE studentID="'.$studentID.'" ';
     
-    print 'Testing, deleteStudent sql '.$sql; 
-    exit;
-        
-    $db_result_set=$db->query($sql);
-    return mysqli_affected_rows();
+      try 
+      {
+			$statement = $db->prepare($query);
+			$statement->bindValue(':classroom_id', $classroom_id);
+			$statement->execute();
+			$result = $statement->fetch();
+			$statement->closeCursor();
+			return $result;
+      } 
+      catch (PDOException $e) 
+        {
+			$error_message = $e->getMessage();
+			display_db_error($error_message);
+		}
   }
 
 }  //   end of Class Student
