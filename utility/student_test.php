@@ -2,26 +2,25 @@
 //initializes the session
 session_start();
 //includes the class file for student and the Database model class file.
-include_once("students.php");
-include_once("../Db.php");
-$db=new Db();
+include_once("../model/Students.php");
+include_once("../model/Database.php");
+//pdo connection var
+global $db
 
 // create tests for Student: 
 // getStudent($id), getStudents(), displayStudent($id), displayStudent(),
 // addStudent($array), updateStudent($array), deleteStudent($id)
 
 //Note: not sure why but displayStudents() is not working so nothing will display. 
-$newstudent = new Student();
+$student = new Student();
 
 if (1) 
 {
   print "<p>1 generic get and show </p>";
-  $studentID=3;
-  
-  $studentarray=$newstudent->getStudent($studentID);
-  $newstudent->showStudent($studentarray);  
-  print_r($studentarray);
-    echo '<br /><br />';
+  $student_record_set=$student->getStudents();
+  foreach($student_record_set as $student_record) {
+  print_r($student_record_record);
+  print '<br><br>';
 }
 
 if (0) 
