@@ -24,43 +24,28 @@ if (isset($_POST['controller'])) {
     $controller = 'booksList';// default
 }
 
-
+if (!isset($_SESSION['id=2']))
+    //run logout/pageback and error not logged in,
+    //or only show login error view
 /*
 --------------------------------------
 Controller
 --------------------------------------
-booksList
-bookAddForm
-bookAddProcess
-bookUpdateForm
-bookUpdateFormProcess
-booksManage
-bookUpdateProcess
-bookDeleteProcess
-bookSearchTitleForm
-bookSearchTitleProcess
+
 
 
 --------------------------------------
 Model
 --------------------------------------
-Book Class Methods Used in Model:
-getBooks()
-addBook($title, $pub
-getBook($id)
-updateBook(array)
-deleteBook($id)
-searchBooksByTitle($searchTerm)
+classrooms
+lessons
+students
+database
 
 
 --------------------------------------
 Views
 --------------------------------------
-booksList.php
-bookAddForm.php
-bookUpdateForm.php
-booksManage.php
-bookSearchTitleForm
 debugView.php
 */
 
@@ -75,7 +60,7 @@ debugView.php
 
 
 /**********  controller: list all books in database  **********************************************/
-if ($controller == 'booksList') {  
+if ($controller == 'studentslist') {  
   $book=new Book();
 
   $bookResult=$book->getBooks();
