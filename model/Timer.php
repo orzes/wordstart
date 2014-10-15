@@ -3,6 +3,7 @@
 //PURPOSE:    Calculate the duration of the lesson
 //DEVELOPER:  Taylor McDowell
 //CHANGE LOG: 10/15/2014
+//SOURCE:     http://stackoverflow.com/questions/8310487/start-and-stop-a-timer-php
 
 class Timer {
 
