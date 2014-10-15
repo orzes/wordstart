@@ -14,7 +14,7 @@
 require('model/database.php');
 //require('model/Student.php');  
 
-$db=new Db();
+global $db;
 if (!isset($_SESSION))
 {
     print "Please log in";
@@ -29,14 +29,14 @@ elseif ($_SESSION['roleid']!=2)
 
 else
 {
-    if (isset($_POST['controller'])) {
+}
+if (isset($_POST['controller'])) {
         $controller = $_POST['controller']; 
     } else if (isset($_GET['controller'])) {
         $controller = $_GET['controller'];
     } else {
         $controller = 'studentsList';// default
     }
-}
 /*
 --------------------------------------
 Controller
