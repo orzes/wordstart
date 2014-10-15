@@ -2,16 +2,42 @@
 //CLASS:      Score
 //PURPOSE:    Manage records for table scores (SELECT, ADD, UPDATE, DELETE)
 //DEVELOPER:  Taylor McDowell
-//CHANGE LOG: 10/06/2014
+//CHANGE LOG: 10/15/2014
 Class Score { 
 
   public function __construct(){
-    // class variables are defined in constructor
-    // in this application, all data is stored in the database
-    // database table books: id title publisher price first_name last_name description
+    //global variables for score accumulation during lessons...
+    var $current_score = 0;
   }
   
-function getScores() {
+  //INTERACTION related methods...
+  //...
+  //...
+  function setPoints($value) {
+    if ($count <= 6) {
+      $this->current_score = $value;
+    }
+    else if ($count < 0){
+      return "Invalid value. Cannot accept negatives!";
+    }
+    else {
+      return "There are only 6 steps in a lesson.";
+    }
+  }
+  
+  function addPoint() {
+    if ($count < 6) {
+      $this->current_score += 1;
+    }
+    else {
+      return "The score is perfect!";
+    }
+  }
+  
+  //DATABASE related methods...
+  //...
+  //...
+  function getScores() {
 		global $db;
 		$query = 'SELECT * FROM scores, lessons, students WHERE scores.lessonID = lessons.lessonID AND scores.studentID = students.studentID';
 		try {
@@ -27,7 +53,7 @@ function getScores() {
 		}
 	} // getScores()	
 
-function getScore($lesson_id, $student_id) {
+  function getScore($lesson_id, $student_id) {
 		global $db;
 		   
 		$query= 'SELECT * FROM scores WHERE lessonID = :lesson_id AND studentID = :student_id';
@@ -45,7 +71,7 @@ function getScore($lesson_id, $student_id) {
 		}
 	} // getScore(lesson_id) 
 
-function deleteScore($lesson_id, $student_id) {
+  function deleteScore($lesson_id, $student_id) {
 		global $db;
 		   
 		$query= 'DELETE FROM scores WHERE lessonID = :lesson_id AND studentID = :student_id';
@@ -63,7 +89,7 @@ function deleteScore($lesson_id, $student_id) {
 		}
 	} // deleteScore($lesson_id, $student_id) 
 
-function updateScore($lesson_id, $student_id, $score_value) {
+  function updateScore($lesson_id, $student_id, $score_value) {
 		global $db;
 		   
 		$query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_id.'", score = "'.$score_value.'", 
@@ -82,7 +108,7 @@ function updateScore($lesson_id, $student_id, $score_value) {
 		}
 	} // updateScore(lesson_id, student_id, score_value) 
 
-function addScore($lesson_id, $student_id, $score_value) {
+  function addScore($lesson_id, $student_id, $score_value) {
 		global $db;
 		   
 		$query= 'INSERT INTO scores(lessonID, studentID, score)

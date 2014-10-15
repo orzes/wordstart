@@ -57,7 +57,7 @@ class Timer {
    }
 }
 //USAGE example(s):
-//$t = new Timer(); //Starts the timer automatically
+//$t = new Timer(); //Starts the timer automatically once instantiated
 //
 //[some operations]
 //
@@ -65,4 +65,4 @@ class Timer {
 //
 //$t->stop();       //Stops timer
 //
-//$t->elapsed();    //Shows duration and stops timer automatically
+//$t->elapsed();    //Shows elapsed time and stops timer automatically
