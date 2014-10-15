@@ -12,13 +12,13 @@
 
 
 require('model/database.php');
-require('model/Student.php');  
+//require('model/Student.php');  
 
 $db=new Db();
 if (!isset($_SESSION))
 {
     print "Please log in";
-    print "<a href="login.php"></a>";
+    //print "<a href="login.php"></a>";
     //run logout/pageback and error not logged in,
     //or only show login error view
 }
@@ -97,8 +97,8 @@ else if ($controller=='studentAddProcess') {
   $last_name=$_POST['authorLastName'];
   $description=$_POST['description'];
 */
-$studentLast
-$studentFirst
+//$studentLast
+//$studentFirst
   $studentResult=$student->addStudent($studentLast, $studentFirst);
 
   if($studentResult==1) {

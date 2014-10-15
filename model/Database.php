@@ -1,5 +1,5 @@
 <?php
-$dsn = 'mysql:host=136.204.252.60;dbname=cita420wordstart;port=3306';
+$dsn = 'mysql:host=localhost;dbname=cita420wordstart;';
 $username = 'webuser';
 $password = 'webuser';
 $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
