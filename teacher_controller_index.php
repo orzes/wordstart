@@ -15,18 +15,28 @@ require('model/database.php');
 require('model/Student.php');  
 
 $db=new Db();
-
-if (isset($_POST['controller'])) {
-    $controller = $_POST['controller']; 
-} else if (isset($_GET['controller'])) {
-    $controller = $_GET['controller'];
-} else {
-    $controller = 'booksList';// default
-}
-
-if (!isset($_SESSION['id=2']))
+if (!isset($_SESSION))
+{
+    print "Please log in"
+    print "<a href="login.php"></a>"
     //run logout/pageback and error not logged in,
     //or only show login error view
+}
+elseif ($_SESSION['roleid']!=2)
+{
+    print "Error: Not logged in as teacher"
+}
+
+else
+{
+    if (isset($_POST['controller'])) {
+        $controller = $_POST['controller']; 
+    } else if (isset($_GET['controller'])) {
+        $controller = $_GET['controller'];
+    } else {
+        $controller = 'studentsList';// default
+    }
+}
 /*
 --------------------------------------
 Controller
@@ -54,70 +64,72 @@ debugView.php
 
 /********** Debug View ****************************************************************************/
 
-// include('view/debugView.php');
+include('view/debugView.php');
   
 /**************************************************************************************************/
 
 
-/**********  controller: list all books in database  **********************************************/
+/**********  controller: list all students in database  **********************************************/
 if ($controller == 'studentslist') {  
-  $book=new Book();
+  $students=new Student();
 
-  $bookResult=$book->getBooks();
+  $studentResult=$student->getStudents();
     
-  include('view/booksList.php');  
+  //include('view/studentsList.php');  
 }  /***********************************************************************************************/
 
 
-/**********  controller:  show the form to add a book  ********************************************/
-else if ($controller == 'bookAddForm') {
-  include('view/bookAddForm.php');  
+/**********  controller:  show the form to add a student  ********************************************/
+else if ($controller == 'studentAddForm') {
+  //include('view/studentAddForm.php');  
 }  /***********************************************************************************************/
 
 
-/**********  controller: process the html form vars and INSERT a book record  *********************/
-else if ($controller=='bookAddProcess') {
+/**********  controller: process the html form vars and INSERT a student record  *********************/
+else if ($controller=='studentAddProcess') {
   // include('view/debugView.php');
-  $book=new Book();
-
+  $student=new Student();
+/*
   $title=$_POST['title'];
   $publisher=$_POST['publisher'];
   $price=$_POST['price'];
   $first_name=$_POST['authorFirstName'];
   $last_name=$_POST['authorLastName'];
   $description=$_POST['description'];
-   
-  $bookResult=$book->addBook($title, $publisher, $price, $first_name, $last_name, $description);
+*/
+$studentLast
+$studentFirst
+  $studentResult=$student->addStudent($studentLast, $studentFirst);
 
-  if($bookResult==1) {
+  if($studentResult==1) {
     header("Location: index.php");
   }
   else {
-    print '<p>The book was NOT successfully added.</p>';
+    print '<p>The student was NOT successfully added.</p>';
   }
 }  /***********************************************************************************************/
 
 
-/**********  controller: show html form to add a new book  ***************************************/
-else if ($controller=='bookUpdateForm') {
+/**********  controller: show html form to add a new student  ***************************************/
+else if ($controller=='studentUpdateForm') {
   // include('view/debugView.php');
   
-  $book=new Book();
+  $student=new Student();
   $id=$_GET['id'];
   
-  $bookResult=$book->getBook($id);
-  $row=mysqli_fetch_assoc($bookResult);
+  $studentResult=$student->getStudent($id);
+  $row=mysqli_fetch_assoc($studentResult);
   
-  include('view/bookUpdateForm.php');
+  include('view/studentUpdateForm.php');
 }  /***********************************************************************************************/
 
 
 /**********  controller: process html form vars, build and execute INSERT query  ******************/
-else if ($controller=='bookUpdateFormProcess') {
+else if ($controller=='studentUpdateFormProcess') {
   // include('view/debugView.php');
   
-  $book=new Book();
-
+  $student=new Student();
+/*
   $id=$_POST['id'];
   $title=$_POST['title'];
   $publisher=$_POST['publisher'];
@@ -126,89 +138,89 @@ else if ($controller=='bookUpdateFormProcess') {
   $last_name=$_POST['authorLastName'];
   $description=$_POST['description'];
   
-  $bookResult=$book->updateBook($id, $title, $publisher, $price, $first_name, $last_name, $description);
-
-  if($bookResult==1) {
-    header("Location: index.php?controller=booksManage");
+  $studentResult=$student->updateStudent($id, $title, $publisher, $price, $first_name, $last_name, $description);
+*/
+  if($studentResult==1) {
+    header("Location: index.php?controller=studentsManage");
   }
   else {
-    print '<p>The book was NOT successfully updated.</p>';
+    print '<p>The student was NOT successfully updated.</p>';
   }
 }  /***********************************************************************************************/
 
 
-/**********  controller: show list of books with links to update and delete a book record  **********/
-else if ($controller=='booksManage') {
+/**********  controller: show list of students with links to update and delete a student record  **********/
+else if ($controller=='studentsManage') {
   // include('view/debugView.php');
 
-  $book=new Book();
-  $bookResult=$book->getBooks();
+  $student=new Student();
+  $studentResult=$student->getStudents();
   
-  include('view/booksManage.php');  
+  include('view/studentsManage.php');  
 }  /***********************************************************************************************/
 
 
 /* *********  controller: process html form vars, build and execute INSERT query  ******************/
-else if ($controller=='bookUpdateProcess') {
+else if ($controller=='studentUpdateProcess') {
   // include('view/debugView.php');
   
-  $book=new Book();
-
-  $id=$_POST['id'];
+  $student=new Student();
+/*
+  $studentid=$_POST['studentID'];
   $title=$_POST['title'];
   $publisher=$_POST['publisher'];
   $price=$_POST['price'];
   $first_name=$_POST['authorFirstName'];
   $last_name=$_POST['authorLastName'];
   $description=$_POST['description'];
-  
-  $bookResult=$book->updateBook($id, $title, $publisher, $price, $first_name, $last_name, $description);
+*/
+$studentResult=$student->updateStudent($id, $title, $publisher, $price, $first_name, $last_name, $description);
 
-  if($bookResult==1) {
-    header("Location: index.php?controller=booksManage");
+  if($studentResult==1) {
+    header("Location: index.php?controller=studentsManage");
   }
   else {
-    print '<p>The book was NOT successfully updated.</p>';
+    print '<p>The student was NOT successfully updated.</p>';
   }
 }  /***********************************************************************************************/
 
 
 /**********  controller: execute delete query  *******************************************************/
-else if ($controller=='bookDeleteProcess') {
+else if ($controller=='studentDeleteProcess') {
   // include('view/debugView.php');
   
   $id=$_GET['id'];  
-  $book=new Book();
-  $bookResult=$book->deleteBook($id);
+  $student=new Student();
+  $studentResult=$student->deleteStudent($id);
 
-  if($bookResult==1) {
-    header("Location: index.php?controller=booksManage");
+  if($studentResult==1) {
+    header("Location: index.php?controller=studentsManage");
   }
   else {
-    print '<p>The book was NOT successfully added.</p>';
+    print '<p>The student was NOT successfully deleted.</p>';
   }
 }  /***********************************************************************************************/
 
 
 /**********  controller: show html form to manage user input of title search term  ***************/
-if ($controller == 'bookSearchTitleForm') {
+if ($controller == 'studentSearchTitleForm') {
  // include('view/debugView.php');
     
-  include('view/bookSearchTitleForm.php');
+  include('view/studentSearchTitleForm.php');
 }  /***********************************************************************************************/
 
 
-/**********  controller: search book database using search term  **************************************/
-if ($controller == 'bookSearchTitleProcess') {
+/**********  controller: search student database using search term  **************************************/
+if ($controller == 'studentSearchProcess') {
   // include('view/debugView.php');
     
   $searchTerm=$_POST['searchTerm'];
   
-  $book=new Book();
-  $bookResult=$book->searchBooksByTitle($searchTerm);
+  $student=new Student();
+  $studentResult=$student->searchStudentsByName($searchTerm);
     
-  // the view bookList.php used with results of search  
-  include('view/booksList.php');
+  // the view studentList.php used with results of search  
+  include('view/studentsList.php');
 }  /***********************************************************************************************/
 
     
