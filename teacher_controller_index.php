@@ -17,14 +17,14 @@ require('model/Student.php');
 $db=new Db();
 if (!isset($_SESSION))
 {
-    print "Please log in"
-    print "<a href="login.php"></a>"
+    print "Please log in";
+    print "<a href="login.php"></a>";
     //run logout/pageback and error not logged in,
     //or only show login error view
 }
 elseif ($_SESSION['roleid']!=2)
 {
-    print "Error: Not logged in as teacher"
+    print "Error: Not logged in as teacher";
 }
 
 else
