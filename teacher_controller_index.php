@@ -75,7 +75,7 @@ if ($controller == 'studentslist') {
 
   $studentResult=$student->getStudents();
     
-  //include('view/studentsList.php');  
+  include('view/teacherslist.php');  
 }  /***********************************************************************************************/
 
 

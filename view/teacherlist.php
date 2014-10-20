@@ -1,5 +1,5 @@
 <?php 
-
+include 'header.php';
 print '
 <div id="main">
   <h1>teacher List</h1>
@@ -31,4 +31,5 @@ print '
   <br /><br />'; 
 
 print '</div>';
+include 'footer.php';
 ?>
