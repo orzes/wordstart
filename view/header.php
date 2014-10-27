@@ -12,12 +12,13 @@ print '
   <body>
    <script src="http://code.jquery.com/jquery.js"></script>
    <script src="js/bootstrap.min.js"></script>
-  
-  <div class="container">
-  <div id="header"> 
+  <div class="container">';
+  include('../view/navigation.php');
+print '  
+    <div id="header"> 
     <h1>Wordstart Student Management</h1>
   </div>';
   
-//include('includes/navigation.php');
+
 
 ?>       
