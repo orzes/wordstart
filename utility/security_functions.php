@@ -2,14 +2,12 @@
 // file: security_functions.php
 
 // define input array
-$post['first']="My name's & my other first name";
-$post['last']='Lastname';
-
-
+$_POST['username']="myusername"; 
+$_POST['password']='mypass';
 
 // filter input
 $clean=array();   
-$input_array=$post;  // or $_POST, or $row 
+$input_array=$_POST;  // or $_POST, or $row 
 $filter='post';
 $clean= filter_vars($input_array, $filter);    
 
