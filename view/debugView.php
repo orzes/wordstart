@@ -6,7 +6,7 @@
     This file is included in the controller file index.php       
 */
 
-//include 'includes/header.php';
+include 'header.php';
 
 print '
 <div id="main">
@@ -24,5 +24,5 @@ print '
   <br /><br />'; 
 
 print '</div>';
-// include('includes/footer.php');
+include('footer.php');
 ?>

@@ -11,7 +11,7 @@
   Based on user input, a local $controller variable calls "model" functions, and builds appropriate "views".   */
 
 
-require('model/database.php');
+require('model/Database.php');
 //require('model/Student.php');  
 
 global $db;

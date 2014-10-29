@@ -2,9 +2,10 @@
 //initializes the session
 session_start();
 //includes the class file for student and the Database model class file.
-include_once("students.php");
-include_once("../Db.php");
-$db=new Db();
+include_once("../model/Students.php");
+include_once("../model/Database.php");
+global $db;
+
 
 // create tests for Student: 
 // getStudent($id), getStudents(), displayStudent($id), displayStudent(),
