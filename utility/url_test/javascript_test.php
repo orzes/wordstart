@@ -13,15 +13,8 @@ print '
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-  var variableToSend = 9;
-  
-  var url= "lesson.php#l13;"
-  
-  var url3= window.location.hash;
-  console.log ("ln 21 window location is: ", url3);
-  console.log("current location line 11", "url2");
-
-  $.get("lessons_store_id.php", {variable: url3});
+  var url= window.location.hash;
+  $.get("lessons_store_id.php", {variable: url});
 
 </script>
 
