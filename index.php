@@ -1,4 +1,7 @@
 <?php
+require_once('model/database.php'); 
+require_once('model/Students.php');
+
 session_start();
 if($_SESSION['roleID'] == 1) { 
 //do nothing
@@ -7,8 +10,7 @@ print 'Please login to see this page <a href="login.php">login</a>';
 exit();
 }
 
-    require_once('model/database.php'); 
-	require_once('model/Students.php');
+    
 	
     $query = "SELECT * FROM students, parents
 			  WHERE students.studentID = parents.parentID
@@ -49,6 +51,7 @@ exit();
                     <th>First Name</th>
 					<th>Parent's First Name</th>
 					<th>Parent's Email</th>
+					<th>&nbsp;</th>
                     <th>&nbsp;</th>
                 </tr>
                 <?php foreach ($students as $student) : ?>
@@ -68,6 +71,15 @@ exit();
                         <input type="submit" value="launch lesson" />
                         
                     </form></td>
+					
+					<td>
+					<form action="studentreport.php" method="post"
+							id="student_report">
+						<input type="hidden" name="student_id"
+							value="<?php echo $student['studentID']; ?>" />
+						<input type="submit" value="Student Report"/>	
+					</form>
+					</td>
                 </tr>
                 <?php endforeach; ?>
             </table>
