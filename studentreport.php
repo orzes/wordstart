@@ -1,6 +1,7 @@
 <?php
 //print 'Post Array is:';
 //print_r($_POST);
+//exit();
 
 
 session_start();
@@ -12,7 +13,7 @@ exit();
 }
 
     require_once('model/database.php');
-	
+	require_once('model/Score.php');
 	
 	
 	
@@ -27,6 +28,12 @@ exit();
     $query = "SELECT * FROM scores, lessons
 			  WHERE lessons.lessonID = scores.lessonID AND scores.studentID = $student_id";
     $scores = $db->query($query); 
+	
+	$query = "SELECT * FROM students
+			  WHERE studentID = $student_id";
+	
+	
+	$students = $db->query($query);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -45,7 +52,9 @@ exit();
     <div id="page">
 
     <div id="header">
-        <h1>Report Form</h1>
+		<?php foreach ($students as $student) : ?>
+		<h1>Report Form for <?php echo $student['studentFirst']; ?></h1>	
+		<?php endforeach; ?>
     </div>
 
     <div id="main">
@@ -57,15 +66,44 @@ exit();
 			<table>
                 <tr>
                     <th>Lesson</th>
-                    <th>Score</th>
+                    <th>Steps Completed</th>
                     <th>Time Taken</th>
 					
                 </tr>
                 <?php foreach ($scores as $score) : ?>
                 <tr>
                     <td><?php echo $score['lessonName']; ?></td>
-                    <td><?php echo $score['score']; ?></td>
+                    
+                    <td>
+						<?php echo $score['step_completed'];?>
+						
+						<form action="studentreportprocess.php" method="post"
+                              id="update_score">
+                       
+						<select name="lesson_score">
+						  <option value="0">0</option>
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+						  <option value="6">6</option>
+						</select>
+						
+						
+						
+						<input type="hidden" name="student_id"
+                               value="<?php echo $score['studentID']; ?>" />
+							   
+						<input type="hidden" name="lesson_id"
+                               value="<?php echo $score['lessonID']; ?>" />
+						
+						
+                        <input type="submit" value="Update" />
+                        
+                    </form></td>
                     <td><?php echo $score['time']; ?></td>
+					
 
                 </tr>
                 <?php endforeach; ?>
