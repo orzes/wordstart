@@ -16,7 +16,7 @@ $query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_
     WHERE lessonID = "'.$lesson_id.'" ';
     
 
-
+echo "Updating"
 
 
 ?>
