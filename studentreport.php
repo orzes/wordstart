@@ -13,7 +13,7 @@ exit();
 }
 
     require_once('model/database.php');
-	require_once('model/Score.php');
+	//require_once('model/Score.php');
 	
 	
 	

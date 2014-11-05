@@ -21,7 +21,7 @@ print '
   include('navigation.php');
 print '  
     <div class="container">
-    <h1>Wordstart Student Management</h1>';
+';
   
 
 

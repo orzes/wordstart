@@ -1,4 +1,14 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
+if($_GET['action']=='logout') {
+$_SESSION['id'] = '';
+$_SESSION['roleID'] = '';
+	header("Location: login.php"); /* Redirect browser */
+	exit();
+
+}
+if($_SESSION['roleID'] == 2 or !$_SESSION['roleID'])  { $login_link = '
+            <li><a href="?action=logout">logout</a></li>'; } else {  $login_link ='<li><a href="login.php">login</a></li>'; }
   // file: navigation.php
   // put all nav links in one file and use throughout the app  
   print '
@@ -12,16 +22,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Word Start</a>
+            <a class="navbar-brand" href="index.php">Word Start</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Student management</a></li>
+                <li class="active"><a href="index.php">Home</a></li>
                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>
@@ -33,13 +42,9 @@
                 </ul>
                 </li>
             </ul>
-          <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Email">
-              <input class="span2" type="password" placeholder="Password">
-              <button type="submit" class="btn">Sign in</button>
-            </form>
+        
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Logged in as:</a></li>
+            '. $login_link .'
             
           </ul>
         </div><!-- /.navbar-collapse -->
