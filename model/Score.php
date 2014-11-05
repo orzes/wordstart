@@ -8,7 +8,7 @@ Class Score {
   public function __construct(){
     //global variables for score accumulation during lessons...
     var $current_score = 0;
-    var $current_time = '00:00';
+    var $current_time = '0000';
   }
   
   //INTERACTION related methods...
@@ -90,10 +90,10 @@ Class Score {
 		}
 	} // deleteScore($lesson_id, $student_id) 
 
-  function updateScore($lesson_id, $student_id, $score_value) {
+  function updateScore($lesson_id, $student_id, $step_completed) {
 		global $db;
 		   
-		$query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_id.'", score = "'.$score_value.'", 
+		$query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_id.'", step_completed = "'.$step_completed.'", time = "'.$time.'",  
     WHERE lessonID = :lesson_id';
 		   
 		try {
@@ -107,13 +107,13 @@ Class Score {
 			$error_message = $e->getMessage();
 			display_db_error($error_message);
 		}
-	} // updateScore(lesson_id, student_id, score_value) 
+	} // updateScore(lesson_id, student_id, step_completed, time) 
 
-  function addScore($lesson_id, $student_id, $score_value) {
+  function addScore($lesson_id, $student_id, $step_completed, $time) {
 		global $db;
 		   
-		$query= 'INSERT INTO scores(lessonID, studentID, score)
-              VALUES("'.$lesson_id.'", "'.$student_id.'", "'.$score_value.'")';
+		$query= 'INSERT INTO scores(lessonID, studentID, step_completed, time)
+              VALUES("'.$lesson_id.'", "'.$student_id.'", "'.$step_completed.'", "'.$time'")';
 		   
 		try {
 			$statement = $db->prepare($query);
@@ -125,5 +125,5 @@ Class Score {
 			$error_message = $e->getMessage();
 			display_db_error($error_message);
 		}
-	} // addScore(lesson_id, student_id, score_value) 
+	} // addScore(lesson_id, student_id, step_completed, time) 
 }
