@@ -61,7 +61,8 @@ Class Score {
 		   
 		try {
 			$statement = $db->prepare($query);
-			$statement->bindValue(':lesson_id', $lesson_id, ':student_id', $student_id);
+			$statement->bindValue(':lesson_id', $lesson_id);
+            $statement->bindValue(':student_id', $student_id);
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();
@@ -90,7 +91,7 @@ Class Score {
 		}
 	} // deleteScore($lesson_id, $student_id) 
 
-  function updateScore($lesson_id, $student_id, $step_completed) {
+  function updateScore($lesson_id, $student_id, $step_completed, $time) {
 		global $db;
 		   
 		$query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_id.'", step_completed = "'.$step_completed.'", time = "'.$time.'",  
