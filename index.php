@@ -1,6 +1,7 @@
 <?php
 require_once('model/database.php'); 
 require_once('model/Students.php');
+include('view/header.php');
 
 session_start();
 if($_SESSION['roleID'] == 1) { 
@@ -29,8 +30,7 @@ exit();
 
 <!-- the body section -->
 <body>
-
-
+<? include('view/header.php'); ?>
     <div id="page">
 
     <div id="header">
@@ -86,7 +86,7 @@ exit();
         
         </div>
     </div>
-
+<? include('view/footer.php'); ?>
     </div><!-- end page -->
     <div id="footer">
         <p>&copy; <?php echo date("Y"); ?> </p>

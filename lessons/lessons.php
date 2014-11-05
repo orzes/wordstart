@@ -8,6 +8,7 @@ include_once("../model/database.php");
 global $db;
 $_SESSION['id'] = $_POST['student_id'];
 $_SESSION['roleID'] = $_POST['role_id'];
+//include_once('../view/header.php');
 //$_SESSION['lessonID'] = 2;
 
 //print $_SERVER['REQUEST_URI'];
