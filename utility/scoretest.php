@@ -13,7 +13,7 @@ $score= new Score();
 // getEntity($id), getEntities(), displayEntity($id), displayEntities(),
 // addEntity($array), updateEntity($array), deleteEntity($id)
 //test calls all the Scoress. 
-if (1) {
+if (0) {
 //this is PDO styling rules 
 print '<h1>1 get all the scores - PDO </h1>';
 $score_record_set=$score->getScores();
@@ -31,14 +31,19 @@ $score_record=$score->getScore($score_id, $student_id);
 print_r($score_record);
 
 }
-if(0) {
+if(1) {
 	//this works
   print "<h1>3 insert Scores</h1>";
   $lesson_id= '9';
   $student_id= '99';
   $step_completed= '6';
-  $time= '000124'
-  //$id=$score->addScore($lesson_id, $score_id, $step_completed, $time);
+  $time= '000124';
+  $id=$score->addScore($lesson_id, $student_id, $step_completed, $time);
+  
+$score_record=$score->getScore($lesson_id, $student_id);
+  print_r($score_record);
+  echo '<br /><br />';
+    
 }
 
 if(0) {
@@ -48,8 +53,8 @@ if(0) {
     $step_completed= '6';
     $time= '000123';
     
-  $lesson_id,$student_id=$score->updatescore($lesson_id, $student_id, $step_completed, $time);
-  $score_record=$score->getScore($score_id, $student_id);
+  $id=$score->updateScore($lesson_id, $student_id, $step_completed, $time);
+  $score_record=$score->getScore($lesson_id, $student_id);
   print_r($score_record);
   echo '<br /><br />';
 }
