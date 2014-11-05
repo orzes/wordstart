@@ -4,8 +4,8 @@ ini_set('display_errors',1);
 error_reporting(-1);
  
 session_start();
-include_once("Model/Teacher.php");
-include_once("../database.php");
+include_once("../model/Teacher.php");
+include_once("../model/Database.php");
 //PDO connection 
 global $db;
 $teacher= new Teacher();
@@ -29,7 +29,7 @@ $teacher_record=$teacher->getTeacher($teacher_id);
 print_r($teacher_record);
 
 }
-if(1) {
+if(0) {
 	//this works
   print "<h1>3 insert Teachers</h1>";
   $teachLast= '1'; 	
@@ -42,7 +42,7 @@ if(1) {
 }
  
 
-if(1) {
+if(0) {
   print "<h1>4 update Teachers</h1>";
   $teachID= '2'; 
   $teachLast= '9'; 	

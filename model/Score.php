@@ -7,8 +7,8 @@ Class Score {
 
   public function __construct(){
     //global variables for score accumulation during lessons...
-    var $current_score = 0;
-    var $current_time = '0000';
+    //var $current_score = 0;
+    //var $current_time = '0000';
   }
   
   //INTERACTION related methods...
@@ -113,7 +113,7 @@ Class Score {
 		global $db;
 		   
 		$query= 'INSERT INTO scores(lessonID, studentID, step_completed, time)
-              VALUES("'.$lesson_id.'", "'.$student_id.'", "'.$step_completed.'", "'.$time'")';
+              VALUES("'.$lesson_id.'", "'.$student_id.'", "'.$step_completed.'", "'.$time.'")';
 		   
 		try {
 			$statement = $db->prepare($query);
