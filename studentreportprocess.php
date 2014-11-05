@@ -14,9 +14,9 @@ require_once('model/Database.php');
 
 $query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_id.'", step_completed = "'.$score_value.'", 
     WHERE lessonID = "'.$lesson_id.'" ';
-    return mysql_affected_rows();
+    return mysqli_affected_rows();
 
-print mysql_affected_rows();
+print mysqli_affected_rows();
 
 
 
