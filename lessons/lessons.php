@@ -1,7 +1,5 @@
  <?php
- ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(-1);
+error_reporting(E_ERROR | E_PARSE);
 session_start();
 include_once("../model/database.php");
 //PDO connection 
@@ -20,6 +18,19 @@ $_SESSION['roleID'] = $_POST['role_id'];
 
 <!DOCTYPE html>
 <html><head>
+<style type="text/css">
+.overlaybtn { font-size:21px;
+z-index:9999; 
+height:40px; 
+background:#FFF; 
+position: fixed; 
+top:0; 
+right:0;
+padding:20px 36px 0 36px; 
+color:#333
+}
+a.overlaybtn:hover {background:#666; color:#FFF; }
+</style>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta servergenerated="true" http-equiv="X-UA-Compatible" content="IE=Edge">
              <!--
@@ -203,6 +214,7 @@ var data = "url_data=" +  url;   // on the server side, the url data is stored i
                                                                                         
                             <li servergenerated="true" class="quick-actions-item quick-actions-email quick-actions-sprite">
                                 <a servergenerated="true" id="quick-actions-email" class="quick-actions-button quick-actions-sprite" href="#">Email</a>
+                            <a href="student_lesson.php">Student Lesson</a>
                             </li>
                                                                                         
 
@@ -255,7 +267,7 @@ var anchors = {};
 
 <div id="FIXED_CONTAINER"></div><div style="width: 1px; height: 1px; overflow: hidden;" id="ReflowTestContainer"><div style="width: 3000px; height: 0px;" id="ReflowTestNode"><div style="width: 10%;" id="ReflowTextInnerNode"></div></div></div><script src="WS-ProgramOne-FUN.com%20_%20L%201_files/nr-411.js"></script><script src="WS-ProgramOne-FUN.com%20_%20L%201_files/c99d7f1ab0" type="text/javascript"></script>
 
+<a href="#" class="overlaybtn">Click to Finish Lesson</a>
 
-
-</body></html>
+</body></html>;
 
