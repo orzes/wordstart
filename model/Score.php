@@ -80,7 +80,8 @@ Class Score {
 		   
 		try {
 			$statement = $db->prepare($query);
-			$statement->bindValue(':lesson_id', $lesson_id, ':student_id', $student_id);
+			$statement->bindValue(':lesson_id', $lesson_id);
+            $statement->bindValue(':student_id', $student_id);
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();
@@ -100,6 +101,7 @@ Class Score {
 		try {
 			$statement = $db->prepare($query);
 			$statement->bindValue(':lesson_id', $lesson_id);
+            $statement->bindValue(':student_id', $student_id);
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();                                                                              
@@ -115,9 +117,10 @@ Class Score {
 		   
 		$query= 'INSERT INTO scores(lessonID, studentID, step_completed, time)
               VALUES("'.$lesson_id.'", "'.$student_id.'", "'.$step_completed.'", "'.$time.'")';
-		   
+		   print ($query);
 		try {
 			$statement = $db->prepare($query);
+            
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();
