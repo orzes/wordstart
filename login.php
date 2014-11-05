@@ -1,8 +1,8 @@
 <?php
- 
 session_start();
 include_once("model/teacherLogin.php");
 include_once("model/database.php");
+include 'view/header.php';
 //PDO connection 
 global $db;
 $teacherLogin= new TeacherLogin();
@@ -46,3 +46,5 @@ $_SESSION['roleID'] = '';
 	exit();
 
 }
+include 'footer.php';
+?>
