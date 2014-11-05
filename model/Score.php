@@ -2,12 +2,13 @@
 //CLASS:      Score
 //PURPOSE:    Manage records for table scores (SELECT, ADD, UPDATE, DELETE)
 //DEVELOPER:  Taylor McDowell
-//CHANGE LOG: 10/15/2014
+//CHANGE LOG: 11/3/2014
 Class Score { 
 
   public function __construct(){
     //global variables for score accumulation during lessons...
     var $current_score = 0;
+    var $current_time = '00:00';
   }
   
   //INTERACTION related methods...
