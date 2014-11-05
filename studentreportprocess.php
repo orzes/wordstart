@@ -16,7 +16,7 @@ $query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_
     WHERE lessonID = "'.$lesson_id.'" ';
     return mysql_affected_rows();
 
-print 'Rows affected' mysql_affected_rows();
+print mysql_affected_rows();
 
 
 
