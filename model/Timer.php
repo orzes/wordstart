@@ -8,52 +8,45 @@
 class Timer {
 
    var $classname = "Timer";
-   var $start     = 0;
-   var $stop      = 0;
-   var $elapsed   = 0;
+   var $start     = '';
+   var $current   = '[initial value]';
+   var $interval  = 905;
+   var $minutes   = 0;
+   var $seconds   = 0;
 
    //Constructor
-   function Timer( $start = true ) {
-      if ( $start )
-         $this->start();
+   function Timer() {
+      $this->begin();
    }
 
    //Start counting time
-   function start() {
-      $this->start = $this->_gettime();
+   function begin() {
+      $this->start = date('H:i:s');
+      $this->show_time();
+   }
+   
+   //Stop to set the current time
+   function stop() {
+      $this->current = date('2014-11-06 12:30:25');
+   }
+   
+   //Calculate duration
+   function calculate() {
+      $this->interval = (strtotime($this->current) - strtotime($this->start));
+      $this->minutes  = (int)($this->interval / 60);
+      $this->seconds  = $this->interval % 60;
    }
 
    //Stop counting time
-   function stop() {
-      $this->stop    = $this->_gettime();
-      $this->elapsed = $this->_compute();
-   }
-
-   //Get Elapsed Time
-   function elapsed() {
-      if ( !$elapsed )
-         $this->stop();
-
-      return $this->elapsed;
-   }
-
-   //Resets Timer so it can be used again
-   function reset() {
-      $this->start   = 0;
-      $this->stop    = 0;
-      $this->elapsed = 0;
-   }
-
-   //Get Current Time
-   function _gettime() {
-      $mtime = microtime();
-      $mtime = explode( " ", $mtime );
-      return $mtime[1] + $mtime[0];
-   }
-
-   //Compute elapsed time
-   function _compute() {
-      return $this->stop - $this->start;
+   function show_time() {
+      $this->calculate();
+      //if ($this->seconds < 10) {
+        //return $this->minutes.':0'.$this->seconds;
+      //}
+      //else {
+        //return $this->minutes.':'.$this->seconds;
+      //}
+      return $this->start.'  -  '.$this->current;
    }
 }
 //USAGE example(s):
