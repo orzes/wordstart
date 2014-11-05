@@ -27,7 +27,7 @@ position: fixed;
 top:0; 
 right:0;
 padding:20px 36px 0 36px; 
-color:#333
+color:#333; border:#666 solid thin; 
 }
 a.overlaybtn:hover {background:#666; color:#FFF; }
 </style>
