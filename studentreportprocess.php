@@ -15,7 +15,8 @@ require_once('model/Database.php');
 $query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_id.'", step_completed = "'.$score_value.'", 
     WHERE lessonID = "'.$lesson_id.'" ';
 	
+if($this->db->affected_rows() >= 0){ echo "Update Succesfful"}
 
-echo "Update Complete";
+
 
 ?>
