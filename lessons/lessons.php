@@ -3,6 +3,11 @@ error_reporting(E_ERROR | E_PARSE);
 session_start();
 include_once("../model/database.php");
 //PDO connection 
+if($_GET['action']==1) { 
+$_SESSION['beginningTime'] = date("H:i:s"); 
+}
+
+
 global $db;
 $_SESSION['id'] = $_POST['student_id'];
 $_SESSION['roleID'] = $_POST['role_id'];
@@ -267,7 +272,8 @@ var anchors = {};
 
 <div id="FIXED_CONTAINER"></div><div style="width: 1px; height: 1px; overflow: hidden;" id="ReflowTestContainer"><div style="width: 3000px; height: 0px;" id="ReflowTestNode"><div style="width: 10%;" id="ReflowTextInnerNode"></div></div></div><script src="WS-ProgramOne-FUN.com%20_%20L%201_files/nr-411.js"></script><script src="WS-ProgramOne-FUN.com%20_%20L%201_files/c99d7f1ab0" type="text/javascript"></script>
 
-<a href="#" class="overlaybtn">Click to Finish Lesson</a>
+<a href="../Student_lesson_decision.php" class="overlaybtn">Click to Finish Lesson</a>
 
 </body></html>;
 
+<a href="file:///W|/"></a>

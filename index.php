@@ -61,7 +61,7 @@ exit();
                     <td><?php echo $student['studentFirst']; ?></td>
 					<td><?php echo $student['parentFirst']; ?></td>
 					<td><?php echo $student['parentEmail']; ?></td>
-                    <td><form action="lessons/lessons.php#!the-lessons/c3x8" method="post"
+                    <td><form action="lessons/lessons.php?action=1#!the-lessons/c3x8?action=1" method="post"
                               id="delete_student_form">
                         <input type="hidden" name="student_id"
                                value="<?php echo $student['studentID']; ?>" />

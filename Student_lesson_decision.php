@@ -7,12 +7,11 @@
 
 
 session_start();
-if($_SESSION['roleID'] == 1) { 
-//do nothing
-} else { 
-print 'Please login to see this page'; 
-exit();
-}
+$_SESSION['endTime'] = date("H:i:s");
+
+$begTime = strtotime($_SESSION['beginningTime']);
+$endTime = strtotime($_SESSION['endTime']);
+$timeTook = $endTime - $begTime;
 
     require_once('model/database.php');
 	//require_once('model/Score.php');
@@ -67,20 +66,32 @@ exit();
 
         <div id="content">
              			
-			<table style= "padding: 150px">
+			<table width="435" style= "padding: 150px">
                
                 <tr>
-                    <th>Lesson</th>
-                    <th>Steps Completed</th>
-                    <th>Time Taken</th>
+                    <th width="48" height="31">Lesson</th>
+                    <th width="50">Steps </th>
+                    <th width="38">Time </th>
 					
                 </tr>
                 <?php foreach ($scores as $score) : ?>
                 <tr>
-                    <td><?php echo $score['lessonName']; ?></td> 
+                    <td height="39">
+					
+					<?php 
+					
+					$str =  $_SESSION['lesson_store_id'];
+
+						$arr1 = str_split($str, 1);
+						
+						print_r($arr1[3]);;
+					
+					//print $_SESSION['lesson_store_id']; ?>
+                    
+                    </td> 
                    
                     <td>
-						<?php echo $score['step_completed'];?>
+						<?php print_r($arr1[4]); ?>
 						
 						<form action="studentreportprocess.php" method="post"
                               id="update_score">
@@ -96,7 +107,7 @@ exit();
 						
                        </form></td>
                     
-                    <td><?php echo $score['time']; ?></td>
+                    <td><?php print $timeTook; ?></td>
 					
 
                 </tr>
@@ -104,21 +115,18 @@ exit();
             </table> 
          
             
-            <form action="../wordstart/login.php">
-    <input type="submit" value="Back to Index Home">
-</form> 
-            <form action="../wordstart/lessons/lessons.php#!the-lessons/c3x8">
-    <input type="submit" value="Try Another Lesson">
-</form> 
-            
+            <form action="login.php">
+              <p>
+                <input type="submit" value="Home">
+              </p>
+              <p>&nbsp;</p>
+          </form> 
+           
 			
-        </div>
+      </div>
     </div>
 
-    </div><!-- end page -->
-    <div id="footer">
-        <p>&copy; <?php echo date("Y"); ?> </p>
-    </div>
+
     <?php
 include 'view/footer.php';
 ?>
