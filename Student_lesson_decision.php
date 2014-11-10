@@ -1,14 +1,14 @@
 <?php
 
 //print 'Post Array is:';
-//print_r($_POST);
+//print_r($_POST); 
 //exit();
 
 
 session_start();
 $_SESSION['endTime'] = date("H:i:s");
 
-$begTime = strtotime($_SESSION['beginningTime']);
+@$begTime = strtotime($_SESSION['beginningTime']);
 $endTime = strtotime($_SESSION['endTime']);
 $timeTook = $endTime - $begTime;
 
