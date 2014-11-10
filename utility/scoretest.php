@@ -27,7 +27,7 @@ if(0) {
 print '<h1>2 get the score</h1>';
 $lesson_id=2;
 $student_id=1;
-$score_record=$score->getScore($score_id, $student_id);
+$score_record=$score->getScore($lesson_id, $student_id);
 print_r($score_record);
 
 }
@@ -35,7 +35,7 @@ if(1) {
 	//this works
   print "<h1>3 insert Scores</h1>";
   $lesson_id= '9';
-  $student_id= '99';
+  $student_id= '79';
   $step_completed= '6';
   $time= '000124';
   $id=$score->addScore($lesson_id, $student_id, $step_completed, $time);
