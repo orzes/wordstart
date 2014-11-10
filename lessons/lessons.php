@@ -7,6 +7,11 @@ if($_GET['action']==1) {
 $_SESSION['beginningTime'] = date("H:i:s"); 
 }
 
+if($_GET['action']==2) { 
+header('../Student_lesson_decision.php');
+exit(); 
+}
+
 
 global $db;
 $_SESSION['id'] = $_POST['student_id'];
