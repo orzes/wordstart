@@ -12,23 +12,16 @@
 
 
 require('model/Database.php');
-//require('model/Student.php');  
+require('model/Student.php');  
 
 global $db;
-if (!isset($_SESSION))
-{
-    print "Please log in";
-    //print "<a href="login.php"></a>";
-    //run logout/pageback and error not logged in,
-    //or only show login error view
-}
-elseif ($_SESSION['roleid']!=2)
-{
-    print "Error: Not logged in as teacher";
-}
-
-else
-{
+session_start();
+if($_SESSION['roleID'] == 1) { 
+//do nothing
+} 
+else { 
+    print 'Please login to see this page'; 
+    exit();
 }
 if (isset($_POST['controller'])) {
         $controller = $_POST['controller']; 

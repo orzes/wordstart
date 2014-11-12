@@ -120,9 +120,9 @@ Class Score {
 		try {
 			$statement = $db->prepare($query);
 			$statement->execute();
-			$result = $statement->fetch();
+			//$result = $statement->fetch();
 			$statement->closeCursor();
-			return $result;
+			//return $result;
 		} catch (PDOException $e) {
 			$error_message = $e->getMessage();
 			display_db_error($error_message);

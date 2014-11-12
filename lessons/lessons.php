@@ -81,6 +81,7 @@ a.overlaybtn:hover {background:#666; color:#FFF; }
 
 
 <script type="text/javascript">
+
   var url= window.location.hash;
   // console.log("current location LN 27 ", url);
   // $.get("lessons_store_id.php", {variable: url}); this requires jQuery, but jQuery link breaks JS lesson application
@@ -277,8 +278,36 @@ var anchors = {};
 
 <div id="FIXED_CONTAINER"></div><div style="width: 1px; height: 1px; overflow: hidden;" id="ReflowTestContainer"><div style="width: 3000px; height: 0px;" id="ReflowTestNode"><div style="width: 10%;" id="ReflowTextInnerNode"></div></div></div><script src="WS-ProgramOne-FUN.com%20_%20L%201_files/nr-411.js"></script><script src="WS-ProgramOne-FUN.com%20_%20L%201_files/c99d7f1ab0" type="text/javascript"></script>
 
-<a href="../Student_lesson_decision.php" class="overlaybtn">Click to Finish Lesson</a>
+<a href="../Student_lesson_decision.php" class="overlaybtn" onclick="storeLessonID()">Click to Finish Lesson</a>
 
+<script>
+    function storeLessonID() {
+        var url= window.location.hash;
+          // console.log("current location LN 27 ", url);
+          // $.get("lessons_store_id.php", {variable: url}); this requires jQuery, but jQuery link breaks JS lesson application
+
+        var xhr;  
+         if (window.XMLHttpRequest) { // Mozilla, Safari, ...  
+            xhr = new XMLHttpRequest();  
+        } else if (window.ActiveXObject) { // IE 8 and older  
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");  
+        }  
+        var data = "url_data=" +  url;   // on the server side, the url data is stored in var $_POST['url_data'];
+             xhr.open("POST", "lessons_store_id.php", true);   
+             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");                    
+             xhr.send(data); 
+    }
+</script>
+
+
+
+
+
+<script>
+function myFunction() {
+    document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
 </body></html>;
 
 <a href="file:///W|/"></a>
