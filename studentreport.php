@@ -65,16 +65,16 @@ exit();
 
         <div id="content">
                      			
-			<table>
+			<table cellpadding="11">
                 <tr>
-                    <th>Lesson</th>
-                    <th>Steps Completed</th>
-                    <th>Time Taken</th>
+                    <th width="308" height="41">Lesson</th>
+                    <th width="144">Steps </th>
+                    <th width="367">Time </th>
 					
                 </tr>
                 <?php foreach ($scores as $score) : ?>
                 <tr>
-                    <td><?php echo $score['lessonName']; ?></td>
+                    <td height="68"><?php echo $score['lessonName']; ?></td>
                     
                     <td>
 						
