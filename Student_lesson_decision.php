@@ -1,23 +1,33 @@
-
 <?php
 
 //print 'Post Array is:';
-//print_r($_POST);
+//print_r($_POST); 
 //exit();
 
 
 session_start();
 $_SESSION['endTime'] = date("H:i:s");
 
-$begTime = strtotime($_SESSION['beginningTime']);
+@$begTime = strtotime($_SESSION['beginningTime']);
 $endTime = strtotime($_SESSION['endTime']);
 $timeTook = $endTime - $begTime;
 
     require_once('model/database.php');
-	//require_once('model/Score.php');
+	require_once('model/Score.php');
+
+    global $db;
+    $score= new Score();
+
+
+
+$str =  $_SESSION['lesson_store_id'];
+$arr1 = str_split($str, 1);
+$scoretodb=$score->addScore($arr1[3], $_SESSION['id'], $arr1[4], $timeTook);
+  
+$score_record=$score->getScore($lesson_id, $student_id);
 	
 	
-	
+/*	
 	if(isset($_POST['student_id'])){
 		$student_id= @ $_POST['student_id'];
 		
@@ -35,6 +45,7 @@ $timeTook = $endTime - $begTime;
 	
 	
 	$students = $db->query($query);
+*/
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
