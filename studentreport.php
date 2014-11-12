@@ -3,6 +3,8 @@
 //print_r($_POST);
 //exit();
 
+include 'view/header.php';
+include 'footer.php';
 
 session_start();
 if($_SESSION['roleID'] == 1) { 
@@ -75,19 +77,42 @@ exit();
                     <td><?php echo $score['lessonName']; ?></td>
                     
                     <td>
-						<?php echo $score['step_completed'];?>
+						
 						
 						<form action="studentreportprocess.php" method="post"
                               id="update_score">
                        
 						<select name="lesson_score">
-						  <option value="0">0</option>
-						  <option value="1">1</option>
-						  <option value="2">2</option>
-						  <option value="3">3</option>
-						  <option value="4">4</option>
-						  <option value="5">5</option>
-						  <option value="6">6</option>
+						  <option value="1" <?php if($score['step_completed'] == '1') {?> 
+                            selected>
+                          <?php } else {?>
+                           >
+                          <?php } ?> 1</option>
+						  <option value="2" <?php if($score['step_completed'] == '2') {?> 
+                            selected>
+                          <?php } else {?>
+                           >
+                          <?php } ?> 2</option>
+						  <option value="3" <?php if($score['step_completed'] == '3') {?> 
+                            selected>
+                          <?php } else {?>
+                           >
+                          <?php } ?>3</option>
+						  <option value="4" <?php if($score['step_completed'] == '4') {?> 
+                            selected>
+                          <?php } else {?>
+                          >
+                          <?php } ?>4</option>
+						  <option value="5" <?php if($score['step_completed'] == '5') {?> 
+                            selected>
+                          <?php } else {?>
+                           >
+                          <?php } ?>5</option>
+						  <option value="6" <?php if($score['step_completed'] == '6') {?> 
+                            selected>
+                          <?php } else {?>
+                          >
+                          <?php } ?>6</option>
 						</select>
 						
 						
@@ -97,12 +122,33 @@ exit();
 							   
 						<input type="hidden" name="lesson_id"
                                value="<?php echo $score['lessonID']; ?>" />
-						
+                            
+						<input type="hidden" name="time"
+                               value="<?php echo $score['time']; ?>" />
 						
                         <input type="submit" value="Update" />
                         
                     </form></td>
-                    <td><?php echo $score['time']; ?></td>
+                    
+                    
+                    <td>
+                    
+                    <form action="studentreportprocess.php" method="post">
+                        
+                    Time: <input type="text" name="time" value="<?php echo $score['time']; ?>">
+                        
+                        <input type="hidden" name="lesson_score"
+                               value="<?php echo $score['step_completed']; ?>" />
+                        
+                        <input type="hidden" name="student_id"
+                               value="<?php echo $score['studentID']; ?>" />
+							   
+						<input type="hidden" name="lesson_id"
+                               value="<?php echo $score['lessonID']; ?>" />    
+                    
+                    <input type="submit" value="Update"/>
+                    
+                    </form></td>
 					
 
                 </tr>

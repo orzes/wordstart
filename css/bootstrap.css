@@ -254,6 +254,7 @@ th {
   }
   .table {
     border-collapse: collapse !important;
+    
   }
   .table-bordered th,
   .table-bordered td {
