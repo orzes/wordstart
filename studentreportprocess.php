@@ -8,7 +8,7 @@
   
 // Update Score
 require_once('Database.php');
-require_once('model/Score.php');
+//require_once('model/Score.php');
 
 
 $query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_id.'", step_completed = "'.$score_value.'"  WHERE lessonID = "'.$lesson_id.'" ';   

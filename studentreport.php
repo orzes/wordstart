@@ -81,13 +81,36 @@ exit();
                               id="update_score">
                        
 						<select name="lesson_score">
-						  <option value="0">0</option>
-						  <option value="1">1</option>
-						  <option value="2">2</option>
-						  <option value="3">3</option>
-						  <option value="4">4</option>
-						  <option value="5">5</option>
-						  <option value="6">6</option>
+						  <option value="1" <?php if($score['step_completed'] == '1') {?> 
+                            selected>
+                          <?php } else {?>
+                           >
+                          <?php } ?> 1</option>
+						  <option value="2" <?php if($score['step_completed'] == '2') {?> 
+                            selected>
+                          <?php } else {?>
+                           >
+                          <?php } ?> 2</option>
+						  <option value="3" <?php if($score['step_completed'] == '3') {?> 
+                            selected>
+                          <?php } else {?>
+                           >
+                          <?php } ?>3</option>
+						  <option value="4" <?php if($score['step_completed'] == '4') {?> 
+                            selected>
+                          <?php } else {?>
+                          >
+                          <?php } ?>4</option>
+						  <option value="5" <?php if($score['step_completed'] == '5') {?> 
+                            selected>
+                          <?php } else {?>
+                           >
+                          <?php } ?>5</option>
+						  <option value="6" <?php if($score['step_completed'] == '6') {?> 
+                            selected>
+                          <?php } else {?>
+                          >
+                          <?php } ?>6</option>
 						</select>
 						
 						
