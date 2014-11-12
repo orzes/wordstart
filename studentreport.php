@@ -3,6 +3,8 @@
 //print_r($_POST);
 //exit();
 
+include 'view/header.php';
+include 'footer.php';
 
 session_start();
 if($_SESSION['roleID'] == 1) { 
@@ -75,7 +77,7 @@ exit();
                     <td><?php echo $score['lessonName']; ?></td>
                     
                     <td>
-						<?php echo $score['step_completed'];?>
+						
 						
 						<form action="studentreportprocess.php" method="post"
                               id="update_score">
@@ -120,12 +122,33 @@ exit();
 							   
 						<input type="hidden" name="lesson_id"
                                value="<?php echo $score['lessonID']; ?>" />
-						
+                            
+						<input type="hidden" name="time"
+                               value="<?php echo $score['time']; ?>" />
 						
                         <input type="submit" value="Update" />
                         
                     </form></td>
-                    <td><?php echo $score['time']; ?></td>
+                    
+                    
+                    <td>
+                    
+                    <form action="studentreportprocess.php" method="post">
+                        
+                    Time: <input type="text" name="time" value="<?php echo $score['time']; ?>">
+                        
+                        <input type="hidden" name="lesson_score"
+                               value="<?php echo $score['step_completed']; ?>" />
+                        
+                        <input type="hidden" name="student_id"
+                               value="<?php echo $score['studentID']; ?>" />
+							   
+						<input type="hidden" name="lesson_id"
+                               value="<?php echo $score['lessonID']; ?>" />    
+                    
+                    <input type="submit" value="Update"/>
+                    
+                    </form></td>
 					
 
                 </tr>
