@@ -135,7 +135,7 @@ exit();
                     
                     <form action="studentreportprocess.php" method="post">
                         
-                    Time: <input type="text" name="time" value="<?php echo $score['time']; ?>">
+                    Time: <input name="time" type="text" value="<?php echo $score['time']; ?>" size="4">
                         
                         <input type="hidden" name="lesson_score"
                                value="<?php echo $score['step_completed']; ?>" />
