@@ -6,8 +6,8 @@ include ('view/header.php');
 
 
 
-$schoolID = $_POST['classroomID'];
-$schoolName = $_POST['parent'];
+$schoolID = $_POST['schoolID'];
+$schoolName = $_POST['schoolName'];
 
 
 require_once('model/Database.php');
