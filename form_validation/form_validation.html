@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>NCFC</title>
+
+
+<script src="form_validation_files/jquery-1.js"></script>
+<script src="form_validation_files/jquery_002.js"></script>
+<script src="form_validation_files/jquery.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("#vendor_add_product_form").validate({
+    
+    rules: {
+    	student_name: {
+    		required: true,
+    		minlength: 4
+    	}
+		,year: {
+			required: true
+		}          
+		,res_hall: {
+			required: true
+		}  
+		,major: {
+			required: true
+		} 
+		,degree_type: {
+			required: true
+		}                                                                
+		,gpa: {
+			required: true
+		}
+    	,otherjob: {
+    		required: function(element) {
+				return $("#cjob").val() == 'other'
+			}
+		}
+    },
+    messages: {
+    	student_name: {
+    		required: "Required",
+    		minlength: jQuery.format("y")
+    	 }
+		,year: "Please select a year"
+		,res_hall: "Please select a Residential Hall"
+    ,major: "Please select a Major"
+    ,degree_type: "Please select a degree type"    
+    ,gpa: "Please your estimated gpa"      
+    // ,otherjob: "If you select 'other' for a job, you must enter it."
+    }
+    
+    });
+	
+	$("commentForm").submit(function(e){
+    	e.preventDefault()
+	})
+});
+
+</script>
+</head>
+
+    <body class="localfood">
+<div id="container">
+
+<div class="nav">
+
+</div>
+
+<div class="one_col">
+<div class="left"><br>
+  <form id="vendor_add_product_form" name="form1" method="post" action="form_php.php">
+  <table style="width:500px;">
+
+    <tbody><tr>
+      <td colspan="2"><h1>Enter Student's Information:</h1></td>
+    </tr>
+     <tr>
+      <td>Student Name</td>
+      <td><input class="error" name="student_name" value="" size="20" type="text"><label class="error" generated="true" for="product_name"></label></td>
+    </tr><tr>
+     <td>Year</td>
+     <td><select name="year">
+     <option value="" selected="selected">Select Year</option><option value="fresh">Freshman</option><option value="sopho">Sophomore</option><option value="junior">Junior</option><option value="senior">Senior</option><option value="800">Other</option></select>
+	    </td>
+	  </tr>	<tr>
+     <td>Residence Hall</td>
+     <td><select name="res_hall">
+     <option value="" selected="selected">Select Residence Hall</option><option value="cayuga">Cayuga</option><option value="commons">Commons</option><option value="west">West</option><option value="fnt_view">Fountain-view</option>
+	  </tr>	<tr>
+     <td>Major</td>
+     <td><select name="major"><option value="" selected="selected">Select Degree</option><option value="web_dev">Web Development</option><option value="app_soft">Application Development</option><option value="end_usr">End User Support</option><option value="net_admin">Network Administration</option>
+	  </tr>	
+    <tr>
+    <td><input type="radio" name="degree_type" value=BT>B.T.<br>
+    <input type="radio" name="degree_type" value=AS>Associates<br>
+    </tr>     
+       
+    <tr>
+      <td>GPA</td>
+      <td><input name="gpa" size="10" type="text"></td>
+    </tr>
+    <tr>
+      <td>Clubs/Activities</td>
+      <td><textarea name="description_short" textarea="" rows="8" cols="40"></textarea></td>
+    </tr>
+     
+    <!--<input name="product_add" value="true" type="hidden">
+    <input name="vendor_id" value="7" type="hidden">  
+    <input name="creator_id" value="7" type="hidden"> --> 
+
+	  <tr>
+      <td colspan="2" align="left">
+	     <input value="Submit" class="css_button" type="submit">
+      </td>
+    </tr>
+
+  </tbody></table>
+  </form></div><!--End left--> 
+  
+                
+<div class="right"></div></div><!--End right--> 
+<div>&nbsp; </div>
+<div class="footer">
+</p></div>    </div></body></html>

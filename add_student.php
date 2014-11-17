@@ -2,15 +2,16 @@
 
 //print_r ($_POST);
 // Get the product data
-include 'view/header.php';
-include 'footer.php';
+include ('view/header.php');
+
+
 $studentLast = $_POST['studentLast'];
 $studentFirst = $_POST['studentFirst'];
 $classroomID = $_POST['classroomID'];
 $parentID = $_POST['parent'];
 $roleID = $_POST['role'];
 
-require_once('Database.php');
+require_once('model/Database.php');
 
 
 
@@ -31,3 +32,4 @@ require_once('Database.php');
 The Student has been successfully added, returning to Student Management....
 </body>
 </html>
+<?php include ('view/footer.php'); ?>

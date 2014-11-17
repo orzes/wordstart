@@ -1,5 +1,7 @@
 <?php
-require('database.php');
+require('model/Database.php');
+include ('view/header.php');
+
 $query = 'SELECT *
           FROM parents
           ORDER BY parentID';
@@ -13,6 +15,52 @@ $parents = $db->query($query);
 <head>
     <title>Student Report</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
+    <script src="form_validation/form_validation_files/jquery-1.js"></script>
+    <script src="form_validation/form_validation_files/jquery_002.js"></script>
+    <script src="form_validation/form_validation_files/jquery.js"></script>
+    
+    
+    <script>
+$(document).ready(function(){
+    $("#add_student_form").validate({
+    
+    rules: {
+    	studentLast: {
+    		required: true,
+    		
+    	}
+		,studentFirst: {
+			required: true
+		}          
+		,classroomID: {
+			required: true
+		}  
+		,parentID: {
+			required: true
+		} 
+		
+    },
+    messages: {
+    	studentLast: {
+    		required: "Required",
+    		minlength: jQuery.format("y")
+    	 }
+		,studentFirst: "Required"
+		,classroomID: "Required"
+    
+         
+    
+    }
+    
+    });
+	
+	$("commentForm").submit(function(e){
+    	e.preventDefault()
+	})
+});
+
+</script>
+
 </head>
 
 <!-- the body section -->
@@ -21,14 +69,15 @@ $parents = $db->query($query);
 
     <div id="page">
 
-    <div id="header">
-		<h2>Add a Student</h2>
-    </div>
+   
 
     <div id="main">
 
-        <div id="content">
-           <form action="add_student.php" method="post"
+        <div id="content" style="padding-left: 40px">
+              <div id="header">
+		          <h2>Add a Student</h2>
+                </div>
+           <form  action="add_student.php" method="post"
                   id="add_student_form">
 
                 <label>Student Last Name:</label>
@@ -71,8 +120,9 @@ $parents = $db->query($query);
 
     </div><!-- end page -->
     <div id="footer">
-        <p>&copy; <?php echo date("Y"); ?> </p>
+        
     </div>
 
 </body>
 </html>
+<?php include ('view/footer.php'); ?>
