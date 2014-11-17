@@ -9,7 +9,7 @@ Class TeacherLogin {
   
 function loginTeacher($teacherEmail, $teacherPassword) {
 		global $db;
-		$query= 'SELECT * FROM teachers WHERE teachEmail = "'.$teacherEmail.'" AND teachPass = "'.$teacherPassword.'"';
+		$query= 'SELECT * FROM teachers WHERE teacherEmail = "'.$teacherEmail.'" AND teacherPass = "'.$teacherPassword.'"';
 		   
 		try {
 			$statement = $db->prepare($query);
@@ -19,7 +19,7 @@ function loginTeacher($teacherEmail, $teacherPassword) {
 			if($result) { 
 			
 			$_SESSION['roleID'] = $result['roleID']; 
-			$_SESSION['id'] = $result['teachID']; 
+			$_SESSION['teacherID'] = $result['teacherID']; 
 			
 			} 
 			
