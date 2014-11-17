@@ -32,14 +32,15 @@ $_SESSION['roleID'] = $_POST['role_id'];
 .overlaybtn { font-size:21px;
 z-index:9999; 
 height:40px; 
-background:#FFF; 
+background:#34849F; 
 position: fixed; 
 top:0; 
 right:0;
 padding:20px 36px 0 36px; 
-color:#333; border:#666 solid thin; 
+color:#FFF; border:#666 solid thin; 
+  box-shadow: 5px 5px 5px #666;
 }
-a.overlaybtn:hover {background:#666; color:#FFF; }
+a.overlaybtn:hover {background:#000; color:#FFF;  box-shadow: 0px 0px 0px #666;}
 </style>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta servergenerated="true" http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -278,7 +279,7 @@ var anchors = {};
 
 <div id="FIXED_CONTAINER"></div><div style="width: 1px; height: 1px; overflow: hidden;" id="ReflowTestContainer"><div style="width: 3000px; height: 0px;" id="ReflowTestNode"><div style="width: 10%;" id="ReflowTextInnerNode"></div></div></div><script src="WS-ProgramOne-FUN.com%20_%20L%201_files/nr-411.js"></script><script src="WS-ProgramOne-FUN.com%20_%20L%201_files/c99d7f1ab0" type="text/javascript"></script>
 
-<a href="../Student_lesson_decision.php" class="overlaybtn" onclick="storeLessonID()">Click to Finish Lesson</a>
+<a href="../lessondecision.php" class="overlaybtn" onclick="storeLessonID()">Click to Finish Lesson</a>
 
 <script>
     function storeLessonID() {
