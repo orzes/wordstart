@@ -83,7 +83,7 @@ exit();
                 </tr>
                 <?php endforeach; ?>
             </table>
-        
+        <a href="add_student_form.php">Add Student</a>
         </div>
     </div>
 <? include('view/footer.php'); ?>
