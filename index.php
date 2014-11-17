@@ -84,6 +84,7 @@ exit();
                 <?php endforeach; ?>
             </table>
         <a href="add_student_form.php">Add Student</a>
+            <a href="add_school_form.php">Add School</a>
         </div>
     </div>
 <? include('view/footer.php'); ?>
