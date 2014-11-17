@@ -73,34 +73,38 @@ $(document).ready(function(){
 
     <div id="main">
 
-        <div id="content" style="padding-left: 40px">
+        <div id="content" >
               <div id="header">
-		          <h2>Add a Student</h2>
+		          <h1>Add a Student</h1>
                 </div>
            <form  action="add_student.php" method="post"
                   id="add_student_form">
-
-                <label>Student Last Name:</label>
-                <input type="input" name="studentLast" />
+               <table>
+                <tr>
+                <td><label>Student Last Name:</label></td>
+                <td><input type="input" name="studentLast" /></td>
                 <br />
-
-                <label>Student First Name:</label>
-                <input type="input" name="studentFirst" />
+                </tr>
+                <tr>
+                
+                <td><label>Student First Name:</label></td>
+                <td><input type="input" name="studentFirst" /></td>
                 <br />
-               
-               <label>Classroom ID:</label>
-                <input type="input" name="classroomID" />
+               </tr>
+                <tr>
+              <td> <label>Classroom ID:</label></td>
+               <td> <input type="input" name="classroomID" /></td>
                 <br />
-                
-                <label>Parent:</label>
-                
-                
-                <select name="parent">
+                </tr>
+                <tr>
+                <td><label>Parent:</label>    </td> 
+                <td><select name="parent">
                  <?php foreach ($parents as $parent) : ?>
-                <option value=<?php echo $parent['parentID'];?> >
-                <?php echo $parent['parentFirst']; ?></option>
+               <option value=<?php echo $parent['parentID'];?> >
+                <?php echo $parent['parentFirst'].' '.$parent['parentLast']; ?></option>
                 <?php endforeach; ?>
-                </select>
+                </select></td>
+               </tr>
                 
                
                 <br />
@@ -108,8 +112,12 @@ $(document).ready(function(){
                 <input type="hidden" name="role" value="2"/>
                
                 
-                <label>&nbsp;</label>
+                <tr>
+                <td>
                 <input type="submit" value="Add Student" />
+                </td>
+                </tr>
+                </table>
                 <br />
             </form>          			
 			
