@@ -4,6 +4,8 @@ require_once('model/Students.php');
 include('view/header.php');
 
 session_start();
+
+
 if($_SESSION['roleID'] == 1) { 
 //do nothing
 } else { 
@@ -14,8 +16,9 @@ exit();
     
 	
     $query = "SELECT * FROM students, parents
-			  WHERE students.studentID = parents.parentID
+			  WHERE students.teacherID = ".$_SESSION['teacherID']." and students.parentID = parents.parentID
               ORDER BY studentLast";
+    
     $students = $db->query($query); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

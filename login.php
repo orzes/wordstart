@@ -17,8 +17,8 @@ print '<h1>Login Form - Basic</h1>';
 if($_SESSION['roleID'] == 2 or !$_SESSION['roleID']) { 
 
 print '<form action="login.php" method="post">
-First name: <input type="text" name="teachEmail"><br>
-Last name: <input type="password" name="teachPass">
+Email: <input type="text" name="teacherEmail"><br>
+Last name: <input type="password" name="teacherPass">
 <input type="submit" name="submit" value="submit"/>
 </form>'; 
 
@@ -31,7 +31,7 @@ print 'The ID is '.$_SESSION['id'].' and role id is '.$_SESSION['roleID'].' <a h
 
 
 if($_POST['submit'] == 'submit') { 
-$classroom_record=$teacherLogin->loginTeacher($_POST['teachEmail'], $_POST['teachPass']);
+$classroom_record=$teacherLogin->loginTeacher($_POST['teacherEmail'], $_POST['teacherPass']);
 	//if(!$classroom_record) { print 'Incorrect login'; }
 	header("Location: index.php"); 
 	exit();
