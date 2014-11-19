@@ -16,7 +16,7 @@ exit();
     
 	
     $query = "SELECT * FROM students, parents
-			  WHERE students.teacherID = ".$_SESSION['teacherID']." and students.parentID = parents.parentID
+			  WHERE students.teacherID = ".$_SESSION['id']." and students.parentID = parents.parentID
               ORDER BY studentLast";
     
     $students = $db->query($query); 
@@ -64,7 +64,7 @@ exit();
                     <td><?php echo $student['studentFirst']; ?></td>
 					<td><?php echo $student['parentFirst']; ?></td>
 					<td><?php echo $student['parentEmail']; ?></td>
-                    <td><form action="lessons/lessons.php1#!the-lessons/c3x8" method="post"
+                    <td><form action="lessons/lessons.php#!the-lessons/c3x8" method="post"
                               id="delete_student_form">
                         <input type="hidden" name="student_id"
                                value="<?php echo $student['studentID']; ?>" />

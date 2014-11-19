@@ -18,7 +18,7 @@ if($_SESSION['roleID'] == 2 or !$_SESSION['roleID']) {
 
 print '<form action="login.php" method="post">
 Email: <input type="text" name="teacherEmail"><br>
-Last name: <input type="password" name="teacherPass">
+Password: <input type="password" name="teacherPass">
 <input type="submit" name="submit" value="submit"/>
 </form>'; 
 
