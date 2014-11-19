@@ -19,7 +19,7 @@ function loginTeacher($teacherEmail, $teacherPassword) {
 			if($result) { 
 			
 			$_SESSION['roleID'] = $result['roleID']; 
-			$_SESSION['teacherID'] = $result['teacherID']; 
+			$_SESSION['id'] = $result['teacherID']; 
 			
 			} 
 			

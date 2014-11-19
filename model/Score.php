@@ -57,12 +57,11 @@ Class Score {
   function getScore($lesson_id, $student_id) {
 		global $db;
 		   
-		$query= 'SELECT * FROM scores WHERE lessonID = :lesson_id AND studentID = :student_id';
+		$query= 'SELECT * FROM scores WHERE scoreID = :score_id';
 		   
 		try {
 			$statement = $db->prepare($query);
-			$statement->bindValue(':lesson_id', $lesson_id);
-            $statement->bindValue(':student_id', $student_id);
+			$statement->bindValue(':score_id', $score_id);
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();
@@ -71,17 +70,16 @@ Class Score {
 			$error_message = $e->getMessage();
 			display_db_error($error_message);
 		}
-	} // getScore(lesson_id) 
+	} // getScore(score_id) 
 
-  function deleteScore($lesson_id, $student_id) {
+  function deleteScore($score_id) {
 		global $db;
 		   
-		$query= 'DELETE FROM scores WHERE lessonID = :lesson_id AND studentID = :student_id';
+		$query= 'DELETE FROM scores WHERE scoreID = :score_id';
 		   
 		try {
 			$statement = $db->prepare($query);
-			$statement->bindValue(':lesson_id', $lesson_id);
-            $statement->bindValue(':student_id', $student_id);
+			$statement->bindValue(':score_id', $score_id);
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();
@@ -92,11 +90,10 @@ Class Score {
 		}
 	} // deleteScore($lesson_id, $student_id) 
 
-  function updateScore($lesson_id, $student_id, $step_completed, $time) {
+  function updateScore($score_id, $lesson_id, $student_id, $step_completed, $time) {
 		global $db;
 		   
-		$query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_id.'", step_completed = "'.$step_completed.'", time = "'.$time.'",  
-    WHERE lessonID = :lesson_id';
+		$query= 'UPDATE scores SET lessonID = "'.$lesson_id.'", studentID = "'.$student_id.'", step_completed = "'.$step_completed.'", time = "'.$time.'"';
 		   
 		try {
 			$statement = $db->prepare($query);

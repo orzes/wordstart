@@ -13,7 +13,7 @@ session_start();
     $query = "SELECT * FROM parents, students
 			  WHERE parents.parentID = students.studentID
               ORDER BY parentLast";
-    $students = $db->query($query); 
+    $parents = $db->query($query); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,16 +52,16 @@ session_start();
                 </tr>
                 <?php foreach ($parents as $parent) : ?>
                 <tr>
-                    <td><?php echo $student['parentID']; ?></td>
-                    <td><?php echo $student['parentLast']; ?></td>
-                    <td><?php echo $student['parentFirst']; ?></td>
-					<td><?php echo $student['parentEmail']; ?></td>
+                    <td><?php echo $parent['parentID']; ?></td>
+                    <td><?php echo $parent['parentLast']; ?></td>
+                    <td><?php echo $parent['parentFirst']; ?></td>
+					<td><?php echo $parent['parentEmail']; ?></td>
                     <td><form action="lessons/lessons.php" method="post"
                               id="delete_parent_form">
                         <input type="hidden" name="parent_id"
-                               value="<?php echo $student['parentID']; ?>" />
+                               value="<?php echo $parent['parentID']; ?>" />
                                  <input type="hidden" name="role_id"
-                               value="<?php echo $student['roleID']; ?>" />
+                               value="<?php echo $parent['roleID']; ?>" />
                         
                         <input type="submit" value="launch lesson" />
                         
