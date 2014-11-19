@@ -1,100 +1,230 @@
 <?php
-require_once('model/database.php'); 
-require_once('model/Students.php');
-include('view/header.php');
+/*file: index.php
+  
+  This application illustrates a Model-View-Controller MVC framework
+  
+  The Model: manages all database driven data in the application.
+  The View: builds the html interface the user interacts with in the application.
+  The Controller: manages user interaction (link, button events).
+  
+  This file, index.php is the "controller" script in the MVC framework
+  Based on user input, a local $controller variable calls "model" functions, and builds appropriate "views".   */
 
+
+require('model/Database.php');
+require("model/teacherLogin.php"); 
+
+global $db;
 session_start();
-
-
 if($_SESSION['roleID'] == 1) { 
 //do nothing
-} else { 
-print 'Please login to see this page <a href="login.php">login</a>'; 
-exit();
+} 
+else { 
+//do nothing
 }
+if (isset($_POST['controller'])) {
+        $controller = $_POST['controller']; 
+    } else if (isset($_GET['controller'])) {
+        $controller = $_GET['controller'];
+    } else {
+        $controller = 'studentsList';// default
+    }
+/*
+--------------------------------------
+Controller
+--------------------------------------
+
+
+
+--------------------------------------
+Model
+--------------------------------------
+classrooms
+lessons
+students
+database
+
+
+--------------------------------------
+Views
+--------------------------------------
+debugView.php
+*/
+
+
+
+
+/********** Debug View ****************************************************************************/
+
+include('view/debugView.php');
+  
+/**************************************************************************************************/
+
+
+/**********  controller: list all students in database  **********************************************/
+if ($controller == 'studentslist') {  
+  $students=new Student();
+
+  $studentResult=$student->getStudents();
+    
+  include('view/studentList.php');  
+}  /***********************************************************************************************/
+
+
+/**********  controller:  show the form to add a student  ********************************************/
+else if ($controller == 'studentAddForm') {
+  //include('view/studentAddForm.php');  
+}  /***********************************************************************************************/
+
+
+/**********  controller: process the html form vars and INSERT a student record  *********************/
+else if ($controller=='studentAddProcess') {
+  // include('view/debugView.php');
+  $student=new Student();
+/*
+  $title=$_POST['title'];
+  $publisher=$_POST['publisher'];
+  $price=$_POST['price'];
+  $first_name=$_POST['authorFirstName'];
+  $last_name=$_POST['authorLastName'];
+  $description=$_POST['description'];
+*/
+//$studentLast
+//$studentFirst
+  $studentResult=$student->addStudent($studentLast, $studentFirst);
+
+  if($studentResult==1) {
+    header("Location: index.php");
+  }
+  else {
+    print '<p>The student was NOT successfully added.</p>';
+  }
+}  /***********************************************************************************************/
+
+
+/**********  controller: show html form to add a new student  ***************************************/
+else if ($controller=='studentUpdateForm') {
+  // include('view/debugView.php');
+  
+  $student=new Student();
+  $id=$_GET['id'];
+  
+  $studentResult=$student->getStudent($id);
+  $row=mysqli_fetch_assoc($studentResult);
+  
+  include('view/studentUpdateForm.php');
+}  /***********************************************************************************************/
+
+
+/**********  controller: process html form vars, build and execute INSERT query  ******************/
+else if ($controller=='studentUpdateFormProcess') {
+  // include('view/debugView.php');
+  
+  $student=new Student();
+/*
+  $id=$_POST['id'];
+  $title=$_POST['title'];
+  $publisher=$_POST['publisher'];
+  $price=$_POST['price'];
+  $first_name=$_POST['authorFirstName'];
+  $last_name=$_POST['authorLastName'];
+  $description=$_POST['description'];
+  
+  $studentResult=$student->updateStudent($id, $title, $publisher, $price, $first_name, $last_name, $description);
+*/
+  if($studentResult==1) {
+    header("Location: index.php?controller=studentsManage");
+  }
+  else {
+    print '<p>The student was NOT successfully updated.</p>';
+  }
+}  /***********************************************************************************************/
+
+
+/**********  controller: show list of students with links to update and delete a student record  **********/
+else if ($controller=='studentsManage') {
+  // include('view/debugView.php');
+
+  $student=new Student();
+  $studentResult=$student->getStudents();
+  
+  include('view/studentsManage.php');  
+}  /***********************************************************************************************/
+
+
+/* *********  controller: process html form vars, build and execute INSERT query  ******************/
+else if ($controller=='studentUpdateProcess') {
+  // include('view/debugView.php');
+  
+  $student=new Student();
+/*
+  $studentid=$_POST['studentID'];
+  $title=$_POST['title'];
+  $publisher=$_POST['publisher'];
+  $price=$_POST['price'];
+  $first_name=$_POST['authorFirstName'];
+  $last_name=$_POST['authorLastName'];
+  $description=$_POST['description'];
+*/
+$studentResult=$student->updateStudent($id, $title, $publisher, $price, $first_name, $last_name, $description);
+
+  if($studentResult==1) {
+    header("Location: index.php?controller=studentsManage");
+  }
+  else {
+    print '<p>The student was NOT successfully updated.</p>';
+  }
+}  /***********************************************************************************************/
+
+
+/**********  controller: execute delete query  *******************************************************/
+else if ($controller=='studentDeleteProcess') {
+  // include('view/debugView.php');
+  
+  $id=$_GET['id'];  
+  $student=new Student();
+  $studentResult=$student->deleteStudent($id);
+
+  if($studentResult==1) {
+    header("Location: index.php?controller=studentsManage");
+  }
+  else {
+    print '<p>The student was NOT successfully deleted.</p>';
+  }
+}  /***********************************************************************************************/
+
+
+/**********  controller: show html form to manage user input of title search term  ***************/
+if ($controller == 'studentSearchTitleForm') {
+ // include('view/debugView.php');
+    
+  include('view/studentSearchTitleForm.php');
+}  /***********************************************************************************************/
+
+
+/**********  controller: search student database using search term  **************************************/
+if ($controller == 'studentSearchProcess') {
+  // include('view/debugView.php');
+    
+  $searchTerm=$_POST['searchTerm'];
+  
+  $student=new Student();
+  $studentResult=$student->searchStudentsByName($searchTerm);
+    
+  // the view studentList.php used with results of search  
+  include('view/studentsList.php');
+}  /***********************************************************************************************/
 
     
-	
-    $query = "SELECT * FROM students, parents
-			  WHERE students.teacherID = ".$_SESSION['id']." and students.parentID = parents.parentID
-              ORDER BY studentLast";
+	/**********  controller: search student database using search term  **************************************/
+if ($controller == 'login') {
+  // include('view/debugView.php');
+
+  $teacherLogin= new TeacherLogin();
+  // the view studentList.php used with results of search  
+  include('view/loginView.php');
+}  /***********************************************************************************************/
+
     
-    $students = $db->query($query); 
+
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-      
-<!-- the head section -->
-<head>
-    <title>Students</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-</head>
-
-<!-- the body section -->
-<body>
-<? include('view/header.php'); ?>
-    <div id="page">
-
-    <div id="header">
-        <h1>Enrolled Students</h1>
-    </div>
-
-    <div id="main">
-
-        
-
-        <div id="content">
-            <!-- display a table of products -->
-            
-            <table>
-                <tr>
-                    <th>Student ID</th>
-                    <th>Last Name</th>
-                    <th>First Name</th>
-					<th>Parent's First Name</th>
-					<th>Parent's Email</th>
-					<th>&nbsp;</th>
-                    <th>&nbsp;</th>
-                </tr>
-                <?php foreach ($students as $student) : ?>
-                <tr>
-                    <td><?php echo $student['studentID']; ?></td>
-                    <td><?php echo $student['studentLast']; ?></td>
-                    <td><?php echo $student['studentFirst']; ?></td>
-					<td><?php echo $student['parentFirst']; ?></td>
-					<td><?php echo $student['parentEmail']; ?></td>
-                    <td><form action="lessons/lessons.php#!the-lessons/c3x8" method="post"
-                              id="delete_student_form">
-                        <input type="hidden" name="student_id"
-                               value="<?php echo $student['studentID']; ?>" />
-                                 <input type="hidden" name="role_id"
-                               value="<?php echo $student['roleID']; ?>" />
-                        
-                        <input type="submit" value="launch lesson" />
-                        
-                    </form></td>
-					
-					<td>
-					<form action="studentreport.php" method="post"
-							id="student_report">
-						<input type="hidden" name="student_id"
-							value="<?php echo $student['studentID']; ?>" />
-						<input type="submit" value="Student Report"/>	
-					</form>
-					</td>
-                </tr>
-                <?php endforeach; ?>
-            </table>
-        <a href="add_student_form.php">Add Student</a>
-            <a href="add_school_form.php">Add School</a>
-        </div>
-    </div>
-<? include('view/footer.php'); ?>
-    </div><!-- end page -->
-    <div id="footer">
-        <p>&copy; <?php echo date("Y"); ?> </p>
-    </div>
-
-</body>
-</html>
