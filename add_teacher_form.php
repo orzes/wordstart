@@ -82,21 +82,30 @@ $(document).ready(function(){
                   id="add_teacher_form">
 
                 <label>Teacher Last Name:</label>
-                <input type="input" name="teachLast" />
+                <input type="input" name="teachLast" placeholder="Last Name"/>
                 <br />
 
                 <label>Teacher First Name:</label>
-                <input type="input" name="teachFirst" />
+                <input type="input" name="teachFirst" placeholder="First Name"/>
                 <br />
                
                <label>Email:</label>
-                <input type="input" name="teachEmail" />
+                <input type="input" name="teachEmail" placeholder="Email"/>
                 <br />
                 
                 <label>Password:</label>
-                <input type="password" name="teachPass" />         
+                <input type="password" name="teachPass" placeholder="Must be 8 characters or more"/>         
                
                 <br />
+               
+               <label>School:</label>
+               <select name="school">
+                 <?php foreach ($schools as $school) : ?>
+               <option value=<?php echo $school['schoolID'];?> >
+                <?php echo $school['schoolName']; ?></option>
+                <?php endforeach; ?>
+                </select>
+               <br />
                 
                 <input type="hidden" name="roleID" value="1"/>
                
