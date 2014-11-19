@@ -11,14 +11,19 @@ $schoolName = $_POST['schoolName'];
 
 
 require_once('model/Database.php');
+require_once('model/School.php');
+global $db;
+$school= new School();
 
 
+$id=$school->addschool($schoolName);
 
- $query='INSERT INTO schools(schoolID, schoolName)
-                VALUES("'.$schoolID.'", "'.$schoolName.'")';
+
+ //$query='INSERT INTO schools(schoolID, schoolName)
+                //VALUES("'.$schoolID.'", "'.$schoolName.'")';
 
   //print_r($query);
-    $scores = $db->query($query);
+   // $scores = $db->query($query);
      
     
 
