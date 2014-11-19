@@ -11,7 +11,7 @@ $schoolName = $_POST['schoolName'];
 
 
 require_once('model/Database.php');
-require_once('model/Schools.php');
+require_once('model/School.php');
 global $db;
 $school= new School();
 
