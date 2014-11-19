@@ -3,14 +3,15 @@
 $date1= date('Y-m-d H:i:s');
 print '<p>1 current time, date1, created when page loads: '.$date1;
 
-
 print '<p>2 now, use date1 as strtotime 2014-11-03 17:32:36';
 
 $date1 = '2014-11-03 17:32:36';
 
 print '<p>3  stop timer/lesson';
 
-$date2= date('Y-m-d H:i:s');
+print '<div id="stop_lesson">';
+  $date2= date('Y-m-d H:i:s');
+print '</div>';
 
 
 print '<p>now date1 '.$date1;
