@@ -9,7 +9,7 @@
   
   This file, index.php is the "controller" script in the MVC framework
   Based on user input, a local $controller variable calls "model" functions, and builds appropriate "views".   */
-
+include 'view/header.php';
 
 require('model/Database.php');
 require("model/teacherLogin.php"); 
@@ -56,7 +56,7 @@ debugView.php
 
 /********** Debug View ****************************************************************************/
 
-include('view/debugView.php');
+//include('view/debugView.php');
   
 /**************************************************************************************************/
 
@@ -225,6 +225,16 @@ if ($controller == 'login') {
   include('view/loginView.php');
 }  /***********************************************************************************************/
 
-    
-
+   	/**********  controller: search student database using search term  **************************************/
+if ($controller == 'logout') {
+	//created by sam ryan
+	//edited: 11/19/14
+	//login form
+$_SESSION['id'] = '';
+$_SESSION['roleID'] = '';
+	header("Location: index.php?controller=login"); /* Redirect browser */
+	exit();
+}  /***********************************************************************************************/
+ 
+include 'view/footer.php';
 ?>
