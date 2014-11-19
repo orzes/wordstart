@@ -20,7 +20,7 @@ Password: <input type="password" name="teacherPass">
 
 } else { 
 
-print 'The ID is '.$_SESSION['id'].' and role id is '.$_SESSION['roleID'].' <a href="?action=logout">logout</a>
+print 'The ID is '.$_SESSION['id'].' and role id is '.$_SESSION['roleID'].' <a href="?controller=logout">logout</a>
 <br>
 ';
 }
