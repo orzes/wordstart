@@ -268,6 +268,9 @@ $roleID = $_POST['roleID'];
 
 $id=$teacher->addTeacher($teachLast, $teachFirst, $teachEmail, $teachPass, $roleID);
 
+header('Location: ?controller=getTeachers'); 
+exit();
+
 }  /***********************************************************************************************/
  if ($controller == 'getTeachers') {
 	//created by sam ryan
@@ -278,6 +281,22 @@ $teacher= new Teacher();
 
 $teacherResult=$teacher->getTeachers();
 
+
+  include('view/getTeachers.php');
+}  /***********************************************************************************************/
+ 
+ 
+  if ($controller == 'deleteTeacherProcess') {
+	//created by sam ryan
+	//edited: 11/19/14
+	//delete teacher process
+$teacher= new Teacher();
+ 
+$id = $_GET['teacherid'];
+
+$teacherResult=$teacher->deleteTeacher($id);
+header('Location: ?controller=getTeachers'); 
+exit();
 
   include('view/getTeachers.php');
 }  /***********************************************************************************************/

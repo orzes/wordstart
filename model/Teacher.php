@@ -46,7 +46,7 @@ function getTeacher($teach_id) {
 function deleteTeacher($teach_id) {
 		global $db;
 		   
-		$query= 'DELETE FROM teachers WHERE teachID= :teach_id';
+		$query= 'DELETE FROM teachers WHERE teacherID= :teach_id';
 		   
 		try {
 			$statement = $db->prepare($query);

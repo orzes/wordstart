@@ -14,7 +14,8 @@
 		 '.$teacherResults['teacherLast'].'
 		 '.$teacherResults['teacherFirst'].'
 		 '.$teacherResults['teacherEmail'].'
-		 '.$teacherResults['roleID'].'<br>'; ?> 
+		 '.$teacherResults['roleID'].'  
+		 <a href="?controller=deleteTeacherProcess&teacherid='.$teacherResults['teacherID'].'">delete</a><br>'; ?> 
         
 	<?php endforeach; ?>
         </div>
