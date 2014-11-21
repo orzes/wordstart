@@ -15,7 +15,6 @@ print '
 <script type="text/javascript">
   var url= window.location.hash;
   $.get("lessons_store_id.php", {variable: url});
-
 </script>
 
 </head>

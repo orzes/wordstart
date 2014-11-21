@@ -14,7 +14,7 @@ print 'Please login to see this page';
 exit();
 }
 
-    require_once('model/database.php');
+    require_once('model/Database.php');
 	//require_once('model/Score.php');
 	
 	
@@ -83,32 +83,32 @@ exit();
                               id="update_score">
                        
 						<select name="lesson_score">
-						  <option value="1" <?php if($score['step_completed'] == '1') {?> 
+						  <option value="1" <?php if($score['stepCompleted'] == '1') {?> 
                             selected>
                           <?php } else {?>
                            >
                           <?php } ?> 1</option>
-						  <option value="2" <?php if($score['step_completed'] == '2') {?> 
+						  <option value="2" <?php if($score['stepCompleted'] == '2') {?> 
                             selected>
                           <?php } else {?>
                            >
                           <?php } ?> 2</option>
-						  <option value="3" <?php if($score['step_completed'] == '3') {?> 
+						  <option value="3" <?php if($score['stepCompleted'] == '3') {?> 
                             selected>
                           <?php } else {?>
                            >
                           <?php } ?>3</option>
-						  <option value="4" <?php if($score['step_completed'] == '4') {?> 
+						  <option value="4" <?php if($score['stepCompleted'] == '4') {?> 
                             selected>
                           <?php } else {?>
                           >
                           <?php } ?>4</option>
-						  <option value="5" <?php if($score['step_completed'] == '5') {?> 
+						  <option value="5" <?php if($score['stepCompleted'] == '5') {?> 
                             selected>
                           <?php } else {?>
                            >
                           <?php } ?>5</option>
-						  <option value="6" <?php if($score['step_completed'] == '6') {?> 
+						  <option value="6" <?php if($score['stepCompleted'] == '6') {?> 
                             selected>
                           <?php } else {?>
                           >
@@ -138,7 +138,7 @@ exit();
                     Time: <input name="time" type="text" value="<?php echo  date('i:s', $score['time']); ?>" size="4">
                         
                         <input type="hidden" name="lesson_score"
-                               value="<?php echo $score['step_completed']; ?>" />
+                               value="<?php echo $score['stepCompleted']; ?>" />
                         
                         <input type="hidden" name="student_id"
                                value="<?php echo $score['studentID']; ?>" />

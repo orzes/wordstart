@@ -24,7 +24,7 @@ $str =  $_SESSION['lesson_store_id'];
 $arr1 = str_split($str, 1);
 $scoretodb=$score->addScore($arr1[3], $_SESSION['id'], $arr1[4], $timeTook);
   
-$score_record=$score->getScore($lesson_id, $student_id);
+$score_record=$score->getScore($scoreID);
 	
 	
 /*	

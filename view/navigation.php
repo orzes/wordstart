@@ -1,14 +1,14 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
-if($_GET['action']=='logout') {
+if($_GET['controller']=='logout') {
 $_SESSION['id'] = '';
 $_SESSION['roleID'] = '';
-	header("Location: login.php"); /* Redirect browser */
+	header("Location: index.php?controller=login"); /* Redirect browser */
 	exit();
 
 }
 if($_SESSION['roleID'] == 2 or !$_SESSION['roleID'])  { $login_link = '
-            <li><a href="?action=logout">logout</a></li>'; } else {  $login_link ='<li><a href="login.php">login</a></li>'; }
+            <li><a href="index.php?controller=login">login</a></li>'; } else {  $login_link ='<li><a href="index.php?controller=logout">login</a></li>'; }
   // file: navigation.php
   // put all nav links in one file and use throughout the app  
   print '

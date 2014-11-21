@@ -1,8 +1,8 @@
 <?php
+ 
 session_start();
 include_once("model/teacherLogin.php");
 include_once("model/database.php");
-include 'view/header.php';
 //PDO connection 
 global $db;
 $teacherLogin= new TeacherLogin();
@@ -12,13 +12,12 @@ $teacherLogin= new TeacherLogin();
 
 if(1) {
 print '<h1>Login Form - Basic</h1>';
-//bobwood@yahoo.com
-//wood4144
+//bobwood@yahoo.com wood4144
 if($_SESSION['roleID'] == 2 or !$_SESSION['roleID']) { 
 
 print '<form action="login.php" method="post">
-Email: <input type="text" name="teacherEmail"><br>
-Password: <input type="password" name="teacherPass">
+First name: <input type="text" name="teachEmail"><br>
+Last name: <input type="password" name="teachPass">
 <input type="submit" name="submit" value="submit"/>
 </form>'; 
 
@@ -31,7 +30,7 @@ print 'The ID is '.$_SESSION['id'].' and role id is '.$_SESSION['roleID'].' <a h
 
 
 if($_POST['submit'] == 'submit') { 
-$classroom_record=$teacherLogin->loginTeacher($_POST['teacherEmail'], $_POST['teacherPass']);
+$classroom_record=$teacherLogin->loginTeacher($_POST['teachEmail'], $_POST['teachPass']);
 	//if(!$classroom_record) { print 'Incorrect login'; }
 	header("Location: index.php"); 
 	exit();
@@ -46,5 +45,3 @@ $_SESSION['roleID'] = '';
 	exit();
 
 }
-include 'footer.php';
-?>

@@ -1,5 +1,5 @@
 <?php
-Class Classroom { 
+Class School { 
 
   public function __construct(){
     // class variables are defined in constructor
@@ -7,9 +7,9 @@ Class Classroom {
     // database table books: id title publisher price first_name last_name description
   }
   
-function getClassrooms() {
+function getSchools() {
 		global $db;
-		$query = 'SELECT * FROM classrooms, teachers, schools WHERE classrooms.teachID = teachers.teachID  AND schools.schoolID=classrooms.schoolID';
+		$query = 'SELECT * FROM schools';
 		try {
 			$statement = $db->prepare($query);
 			// $statement->bindValue(':category_id', $category_id);
@@ -21,17 +21,17 @@ function getClassrooms() {
 			$error_message = $e->getMessage();
 			display_db_error($error_message);
 		}
-	} // get_classoom()	
+	} // get_school()	
 
  
-function getClassroom($classroom_id) {
+function getSchool($School_id) {
 		global $db;
 		   
-		$query= 'SELECT * FROM classrooms WHERE classroomID= :classroom_id';
+		$query= 'SELECT * FROM schools WHERE schoolID= :school_id';
 		   
 		try {
 			$statement = $db->prepare($query);
-			$statement->bindValue(':classroom_id', $classroom_id);
+			$statement->bindValue(':school_id', $school_id);
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();
@@ -40,17 +40,17 @@ function getClassroom($classroom_id) {
 			$error_message = $e->getMessage();
 			display_db_error($error_message);
 		}
-	} // get_classoom($classroom_id) 
+	} // get_school($school_id) 
 
 
-function deleteClassroom($classroom_id) {
+function deleteSchool($school_id) {
 		global $db;
 		   
-		$query= 'DELETE FROM classrooms WHERE classroomID= :classroom_id';
+		$query= 'DELETE FROM schools WHERE schoolID= :school_id';
 		   
 		try {
 			$statement = $db->prepare($query);
-			$statement->bindValue(':classroom_id', $classroom_id);
+			$statement->bindValue(':school_id', $school_id);
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();
@@ -59,17 +59,16 @@ function deleteClassroom($classroom_id) {
 			$error_message = $e->getMessage();
 			display_db_error($error_message);
 		}
-	} // get_classoom($classroom_id) 
+	} // get_school($school_id) 
 
-function updateClassroom($classroomID, $classSection, $classGradeLevel, $teachID, $schoolID) {
+function updateSchool($schoolID, $schoolName) {
 		global $db;
 		   
-		$query= 'UPDATE classrooms SET classSection="'.$classSection.'", classGradeLevel="'.$classGradeLevel.'", teachID="'.$teachID.'", 
-    schoolID= :schoolID WHERE classroomID = :classroom_id';
+		$query= 'UPDATE schools SET schoolName="'.$schoolName.'"' ;
 		   
 		try {
 			$statement = $db->prepare($query);
-			$statement->bindValue(':classroom_id', $classroomID, ':schoolID', $schoolID);
+			$statement->bindValue(':school_id', $schoolID);
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();
@@ -78,13 +77,13 @@ function updateClassroom($classroomID, $classSection, $classGradeLevel, $teachID
 			$error_message = $e->getMessage();
 			display_db_error($error_message);
 		}
-	} // get_classoom($classroom_id) 
+	} // get_school($school_id) 
 
-function addClassroom($classSection, $classGradeLevel, $teachID, $schoolID) {
+function addSchool(schoolName) {
 		global $db;
 		   
-		$query= 'INSERT INTO classrooms(classSection, classGradeLevel, teachID, schoolID)
-              VALUES("'.$classSection.'", "'.$classGradeLevel.'", "'.$teachID.'", "'.$schoolID.'")';
+		$query= 'INSERT INTO schools(schoolName)
+              VALUES("'.$schoolName.'")';
 		   
 		try {
 			$statement = $db->prepare($query);
@@ -96,7 +95,7 @@ function addClassroom($classSection, $classGradeLevel, $teachID, $schoolID) {
 			$error_message = $e->getMessage();
 			display_db_error($error_message);
 		}
-	} // get_classoom($classroom_id) 
+	} // get_school($school_id) 
 	
 	
 
