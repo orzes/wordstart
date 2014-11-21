@@ -82,7 +82,7 @@ function updateTeacher($teachID, $teachlast, $teachFirst, $teachEmail, $teachPas
 function addTeacher($teachLast, $teachFirst, $teachEmail, $teachPass) {
 		global $db;
 		   
-		$query= 'INSERT INTO teachers(teachLast, teachFirst, teachEmail, teachPass)
+		$query= 'INSERT INTO teachers(teacherLast, teacherFirst, teacherEmail, teacherPass)
               VALUES("'.$teachLast.'", "'.$teachFirst.'", "'.$teachEmail.'", "'.$teachPass.'")';
 		   
 		try {

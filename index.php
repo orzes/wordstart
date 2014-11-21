@@ -13,6 +13,8 @@ include 'view/header.php';
 
 require('model/Database.php');
 require("model/teacherLogin.php"); 
+require("model/Students.php"); 
+require("model/Teacher.php"); 
 
 global $db;
 session_start();
@@ -91,7 +93,7 @@ else if ($controller=='studentAddProcess') {
 */
 //$studentLast
 //$studentFirst
-  $studentResult=$student->addStudent($studentLast, $studentFirst);
+  $studentResult=$student->addStudent($studentLast, $studentFirst, 1,1);
 
   if($studentResult==1) {
     header("Location: index.php");
@@ -216,7 +218,8 @@ if ($controller == 'studentSearchProcess') {
 }  /***********************************************************************************************/
 
     
-	/**********  controller: search student database using search term  **************************************/
+
+/**********  TEACHER PART CREATED BY SAM AND JOE  **************************************/
 if ($controller == 'login') {
   // include('view/debugView.php');
 
@@ -234,6 +237,43 @@ $_SESSION['id'] = '';
 $_SESSION['roleID'] = '';
 	header("Location: index.php?controller=login"); /* Redirect browser */
 	exit();
+}  /***********************************************************************************************/
+ 
+ if ($controller == 'addTeacher') {
+	//created by sam ryan
+	//edited: 11/19/14
+	//login form
+  $teacherLogin= new Teacher();
+  // the view studentList.php used with results of search  
+  include('view/addTeacher.php');
+}  /***********************************************************************************************/
+ 
+if ($controller == 'addTeacherProcess') {
+	//created by sam ryan
+	//edited: 11/19/14
+	//login form
+ $teacherLogin= new Teacher();
+ 
+
+$teachLast = $_POST['teachLast'];
+$teachFirst = $_POST['teachFirst'];
+$teachEmail = $_POST['teachEmail'];
+$teachPass = $_POST['parent'];
+$roleID = $_POST['roleID'];
+
+
+$id=$teacher->addteacher($teachLast, $teachFirst, $teachEmail, $teachPass);
+
+}  /***********************************************************************************************/
+ if ($controller == 'getTeachers') {
+	//created by sam ryan
+	//edited: 11/19/14
+	//teacher form
+$teacherLogin= new Teacher();
+ 
+
+$id=$teacher->getTeachers();
+
 }  /***********************************************************************************************/
  
 include 'view/footer.php';
