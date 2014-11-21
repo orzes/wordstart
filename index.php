@@ -219,7 +219,13 @@ if ($controller == 'studentSearchProcess') {
 
     
 
+
+
+
 /**********  TEACHER PART CREATED BY SAM AND JOE  **************************************/
+
+
+
 if ($controller == 'login') {
   // include('view/debugView.php');
 
@@ -242,8 +248,6 @@ $_SESSION['roleID'] = '';
  if ($controller == 'addTeacher') {
 	//created by sam ryan
 	//edited: 11/19/14
-	//login form
-  $teacherLogin= new Teacher();
   // the view studentList.php used with results of search  
   include('view/addTeacher.php');
 }  /***********************************************************************************************/
@@ -251,29 +255,31 @@ $_SESSION['roleID'] = '';
 if ($controller == 'addTeacherProcess') {
 	//created by sam ryan
 	//edited: 11/19/14
-	//login form
- $teacherLogin= new Teacher();
+	//add teacher process 
+ $teacher= new Teacher();
  
 
 $teachLast = $_POST['teachLast'];
 $teachFirst = $_POST['teachFirst'];
 $teachEmail = $_POST['teachEmail'];
-$teachPass = $_POST['parent'];
+$teachPass = $_POST['teachPass'];
 $roleID = $_POST['roleID'];
 
 
-$id=$teacher->addteacher($teachLast, $teachFirst, $teachEmail, $teachPass);
+$id=$teacher->addTeacher($teachLast, $teachFirst, $teachEmail, $teachPass, $roleID);
 
 }  /***********************************************************************************************/
  if ($controller == 'getTeachers') {
 	//created by sam ryan
 	//edited: 11/19/14
-	//teacher form
-$teacherLogin= new Teacher();
+	//get teacher process
+$teacher= new Teacher();
  
 
-$id=$teacher->getTeachers();
+$teacherResult=$teacher->getTeachers();
 
+
+  include('view/getTeachers.php');
 }  /***********************************************************************************************/
  
 include 'view/footer.php';

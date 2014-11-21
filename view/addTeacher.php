@@ -37,13 +37,7 @@ $teachers = $db->query($query);
                
                 <br />
                
-               <label>School:</label>
-               <select name="school">
-                 <?php foreach ($schools as $school) : ?>
-               <option value=<?php echo $school['schoolID'];?> >
-                <?php echo $school['schoolName']; ?></option>
-                <?php endforeach; ?>
-                </select>
+              
                <br />
                 
                 <input type="hidden" name="roleID" value="1"/>

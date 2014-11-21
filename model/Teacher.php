@@ -79,16 +79,15 @@ function updateTeacher($teachID, $teachlast, $teachFirst, $teachEmail, $teachPas
 		}
 	} // get_teacher($teach_id) 
 
-function addTeacher($teachLast, $teachFirst, $teachEmail, $teachPass) {
+function addTeacher($teachLast, $teachFirst, $teachEmail, $teachPass, $roleID) {
 		global $db;
 		   
-		$query= 'INSERT INTO teachers(teacherLast, teacherFirst, teacherEmail, teacherPass)
-              VALUES("'.$teachLast.'", "'.$teachFirst.'", "'.$teachEmail.'", "'.$teachPass.'")';
+		$query= 'INSERT INTO teachers(teacherLast, teacherFirst, teacherEmail, teacherPass, roleID)
+              VALUES("'.$teachLast.'", "'.$teachFirst.'", "'.$teachEmail.'", "'.$teachPass.'","'.$roleID.'")';
 		   
 		try {
 			$statement = $db->prepare($query);
 			$statement->execute();
-			$result = $statement->fetch();
 			$statement->closeCursor();
 			return $result;
 		} catch (PDOException $e) {
