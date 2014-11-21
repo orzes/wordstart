@@ -3,8 +3,8 @@ require('model/Database.php');
 include ('view/header.php');
 
 $query = 'SELECT *
-          FROM parents
-          ORDER BY parentID';
+          FROM parents, teachers';
+          
 $parents = $db->query($query);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -91,13 +91,19 @@ $(document).ready(function(){
                 <td><input type="input" name="studentFirst" /></td>
                 <br />
                </tr>
+                   
                 <tr>
-              <td> <label>Classroom ID:</label></td>
-               <td> <input type="input" name="classroomID" /></td>
-                <br />
+                <td><label>Teacher:</label>    </td> 
+                <td><select name="teacher">
+                 <?php foreach ($parents as $parent) : ?>
+               <option value=<?php echo $parent['teacherID'];?> >
+                <?php echo $parent['teacherFirst'].' '.$parent['teacherLast']; ?></option>
+                <?php endforeach; ?>
+                </select></td>
                 </tr>
+                
                 <tr>
-                <td><label>Parent:</label>    </td> 
+                <td><label>Parent:</label> </td> 
                 <td><select name="parent">
                  <?php foreach ($parents as $parent) : ?>
                <option value=<?php echo $parent['parentID'];?> >
