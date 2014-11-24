@@ -24,7 +24,7 @@ function getParents() {
     } // get_parent()
 
 
-function getParent($parent_id) {
+function getParents($parent_id) {
         global $db;
 
         $query= 'SELECT * FROM parents WHERE parentID= :parent_id';
@@ -79,7 +79,7 @@ function updateParents($parentID, $parentlast, $parentFirst, $parentEmail, $pare
         }
     } // get_parent($parent_id)
 
-function addTeacher($parentLast, $parentFirst, $parentEmail, $parentPass, $roleID) {
+function addParents($parentLast, $parentFirst, $parentEmail, $parentPass, $roleID) {
         global $db;
 
         $query= 'INSERT INTO parents(parentLast, parentFirst, parentEmail, parentPass, roleID)
