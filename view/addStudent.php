@@ -9,17 +9,21 @@ $studentLast = $_POST['studentLast'];
 $studentFirst = $_POST['studentFirst'];
 $classroomID = $_POST['classroomID'];
 $parentID = $_POST['parent'];
-$roleID = $_POST['role'];
+//$roleID = $_POST['role'];
 
 require_once('model/Database.php');
+require_once('model/Students.php');
 
-
-
- $query='INSERT INTO students(studentLast, studentFirst, parentID, classroomID, roleID)
-                VALUES("'.$studentLast.'", "'.$studentFirst.'", "'.$parentID.'", "'.$classroomID.'", "'.$roleID.'")';
+ //Add student object
+ $student = new Student()
+ 
+ //QUERY
+ $studentResult = $student->addStudent($studentLast, $studentFirst, $parentID, $classroomID)
+ //$query='INSERT INTO students(studentLast, studentFirst, parentID, classroomID, roleID)
+                //VALUES("'.$studentLast.'", "'.$studentFirst.'", "'.$parentID.'", "'.$classroomID.'", "'.$roleID.'")';
 
   //print_r($query);
-    $scores = $db->query($query);
+    //$scores = $db->query($query);
      
     
 
