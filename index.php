@@ -91,7 +91,7 @@ else if ($controller=='studentAddProcess') {
     $studenLast = $_POST['studentLast'];
     $studentFirst = $_POST['studentFirst'];
     $parentID = $_POST['parentID'];
-    $teacherID = $_POST['teachID'];
+    $teacherID = $_POST['teacherID'];
     $roleID = $_POST['roleID'];
 
 
@@ -231,7 +231,8 @@ if ($controller == 'studentSearchProcess') {
 
 if ($controller == 'login') {
   // include('view/debugView.php');
-
+$_SESSION['id'] = '';
+$_SESSION['roleID'] = '';
   $teacherLogin= new TeacherLogin();
   // the view studentList.php used with results of search
   include('view/loginView.php');
