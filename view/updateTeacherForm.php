@@ -6,6 +6,8 @@ $teacherLast=$row['teacherLast'];
 $teacherFirst=$row['first_name'];
 $teacherEmail=$row['teacherEmail'];
 $teacherPass=$row['teacherPass'];
+$price=$row['price'];
+$description=$row['description'];
 
 print '
 <div id="main">
@@ -13,7 +15,7 @@ print '
 <br /><br />
 <hr />
 
-<form action="index.php" method="post" id="teacherAddForm">
+<form action="index.php" method="post" id="teacherUpdateForm">
 
   <input type="hidden" name="teachId" value='.$teacherID.' />        
   <input type="hidden" name="controller" value="teacherUpdateProcess" />

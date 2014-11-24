@@ -78,7 +78,7 @@ $(document).ready(function(){
 
         <div id="content" >
               <div id="header">
-		          <h1>Add a Student</h1>
+		          
                 </div>
            <form  action="?controller=studentaddProcess" method="post"
                   id="add_student_form">
