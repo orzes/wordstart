@@ -77,6 +77,7 @@ if ($controller == 'studentslist') {
 /**********  controller:  show the form to add a student  ********************************************/
 else if ($controller == 'studentAddForm') {
   //include('view/studentAddForm.php');
+ include('view/studentAddForm.php');
 }  /***********************************************************************************************/
 
 
@@ -84,17 +85,18 @@ else if ($controller == 'studentAddForm') {
 else if ($controller=='studentAddProcess') {
   // include('view/debugView.php');
   $student=new Student();
-/*
-  $title=$_POST['title'];
-  $publisher=$_POST['publisher'];
-  $price=$_POST['price'];
-  $first_name=$_POST['authorFirstName'];
-  $last_name=$_POST['authorLastName'];
-  $description=$_POST['description'];
-*/
-//$studentLast
-//$studentFirst
-  $studentResult=$student->addStudent($studentLast, $studentFirst, 1,1);
+ 
+
+
+    $studenLast = $_POST['studentLast'];
+    $studentFirst = $_POST['studentFirst'];
+    $parentID = $_POST['parentID'];
+    $teacherID = $_POST['teachID'];
+    $roleID = $_POST['roleID'];
+
+
+    
+  $studentResult=$student->addStudent($studentLast, $studentFirst, $parentID, $teacherID, $roleID);
 
   if($studentResult==1) {
     header("Location: index.php");
@@ -124,17 +126,18 @@ else if ($controller=='studentUpdateFormProcess') {
   // include('view/debugView.php');
 
   $student=new Student();
-/*
-  $id=$_POST['id'];
-  $title=$_POST['title'];
-  $publisher=$_POST['publisher'];
-  $price=$_POST['price'];
-  $first_name=$_POST['authorFirstName'];
-  $last_name=$_POST['authorLastName'];
-  $description=$_POST['description'];
+  
+ $studentid=$_POST['studentID'];
+  $studentFirst=$_POST['studentFirst'];
+  $studentLast=$_POST['studentLast'];
+  $parentID=$_POST['parentID'];
+  $teacherID=$_POST['teacherID'];
+  $roleID=$_POST['roleID'];                           
+ 
 
-  $studentResult=$student->updateStudent($id, $title, $publisher, $price, $first_name, $last_name, $description);
-*/
+ $studentResult=$student->updateStudent($studentID, $studentFirst, $studentLast, $parentID, $teacherID, $roleID);
+
+
   if($studentResult==1) {
     header("Location: index.php?controller=studentsManage");
   }
@@ -160,16 +163,15 @@ else if ($controller=='studentUpdateProcess') {
   // include('view/debugView.php');
 
   $student=new Student();
-/*
+
   $studentid=$_POST['studentID'];
-  $title=$_POST['title'];
-  $publisher=$_POST['publisher'];
-  $price=$_POST['price'];
-  $first_name=$_POST['authorFirstName'];
-  $last_name=$_POST['authorLastName'];
-  $description=$_POST['description'];
-*/
-$studentResult=$student->updateStudent($id, $title, $publisher, $price, $first_name, $last_name, $description);
+  $studentFirst=$_POST['studentFirst'];
+  $studentLast=$_POST['studentLast'];
+  $parentID=$_POST['parentID'];
+  $teacherID=$_POST['teacherID'];
+  $roleID=$_POST['roleID'];
+  
+  $studentResult=$student->updateStudent($studentID, $studentFirst, $studentLast, $parentID, $teacherID, $roleID);
 
   if($studentResult==1) {
     header("Location: index.php?controller=studentsManage");

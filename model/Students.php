@@ -16,7 +16,7 @@ Class Student {
   function getStudents() 
   {  
       global $db; // $db is object of Class Db(), and is out of scope unless made global inside this method
-		$query = 'SELECT * FROM students, parents, classrooms WHERE students.parentID = parents.parentID  AND students.classroomID=classrooms.classroomID';
+		$query = 'SELECT * FROM students, parents, classrooms WHERE students.parentID = parents.parentID  AND students.teacherID=teachers.teacherID';
       try 
       {
 			$statement = $db->prepare($query);
@@ -51,12 +51,12 @@ $query= 'SELECT * FROM students WHERE studentID= :student_id';
 		}
   } // getStudent($student_id)
 
-    function addStudent($studentLast, $studentFirst, $parentID, $classroomID) 
+    function addStudent($studentLast, $studentFirst, $parentID, $teacherID, $roleID) 
     {
         global $db;
 
-        $query='INSERT INTO students(studentLast, studentFirst, parentID, classroomID)
-                VALUES("'.$studentLast.'", "'.$studentFirst.'", "'.$parentID.'", "'.$classroomID.'")';
+        $query='INSERT INTO students(studentLast, studentFirst, parentID, teacherID)
+                VALUES("'.$studentLast.'", "'.$studentFirst.'", "'.$parentID.'", "'.$teacherID.'", "'.$roleID.'")';
 
         try 
         {
@@ -74,11 +74,11 @@ $query= 'SELECT * FROM students WHERE studentID= :student_id';
     }//end function addStudent
 
 
-  function updateStudent($studentID, $studentLast, $studentFirst, $parentID, $classroomID) {
+  function updateStudent($studentID, $studentLast, $studentFirst, $parentID, $teacherID, $roleID) {
     global $db;  
     
     $query= 'UPDATE students SET studentLast="'.$studentLast.'", studentFirst="'.$studentFirst.'", parentID="'.$parentID.'", 
-    classroomID="'.$classroomID.'" WHERE studentID="'.$studentID.'" ';
+    teacherID="'.$teacherID.'", roleID="'.$roleID.'" WHERE studentID="'.$studentID.'" ';
     
         try 
         {
@@ -104,7 +104,7 @@ $query= 'SELECT * FROM students WHERE studentID= :student_id';
       try 
       {
 			$statement = $db->prepare($query);
-			$statement->bindValue(':classroom_id', $classroom_id);
+			$statement->bindValue(':teacher_id', $teacher_id);
 			$statement->execute();
 			$result = $statement->fetch();
 			$statement->closeCursor();
