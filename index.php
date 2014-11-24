@@ -91,7 +91,7 @@ else if ($controller=='studentAddProcess') {
     $studenLast = $_POST['studentLast'];
     $studentFirst = $_POST['studentFirst'];
     $parentID = $_POST['parentID'];
-    $teacherID = $_POST['teachID'];
+    $teacherID = $_POST['teacherID'];
     $roleID = $_POST['roleID'];
 
 
