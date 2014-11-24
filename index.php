@@ -75,7 +75,7 @@ if ($controller == 'studentslist' || $controller == '') {
 
 
 /**********  controller:  show the form to add a student  ********************************************/
-if ($controller == 'studentAddForm') {
+else if ($controller == 'studentAddForm') {
   //include('view/studentAddForm.php');
  include('view/studentAddForm.php');
 }  /***********************************************************************************************/
