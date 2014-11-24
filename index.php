@@ -84,7 +84,7 @@ else if ($controller == 'studentAddForm') {
 /**********  controller: process the html form vars and INSERT a student record  *********************/
 else if ($controller=='studentAddProcess') {
   // include('view/debugView.php');
-  $student=new Student();
+    $student=new Student();
  
 
 
