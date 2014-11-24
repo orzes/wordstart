@@ -1,5 +1,5 @@
 <?php
-Class Teacher {
+Class Parents {
 
   public function __construct(){
     // class variables are defined in constructor
@@ -7,9 +7,9 @@ Class Teacher {
     // database table books: id title publisher price first_name last_name description
   }
 
-function getTeachers() {
+function getParents() {
         global $db;
-        $query = 'SELECT * FROM teachers';
+        $query = 'SELECT * FROM parents';
         try {
             $statement = $db->prepare($query);
             // $statement->bindValue(':category_id', $category_id);
@@ -21,17 +21,17 @@ function getTeachers() {
             $error_message = $e->getMessage();
             display_db_error($error_message);
         }
-    } // get_teacher()
+    } // get_parent()
 
 
-function getTeacher($teacher_id) {
+function getParent($parent_id) {
         global $db;
 
-        $query= 'SELECT * FROM teachers WHERE teacherID= :teacher_id';
+        $query= 'SELECT * FROM parents WHERE parentID= :parent_id';
 
         try {
             $statement = $db->prepare($query);
-            $statement->bindValue(':teacher_id', $teacher_id);
+            $statement->bindValue(':parent_id', $parent_id);
             $statement->execute();
             $result = $statement->fetch();
             $statement->closeCursor();
@@ -40,17 +40,17 @@ function getTeacher($teacher_id) {
             $error_message = $e->getMessage();
             display_db_error($error_message);
         }
-    } // get_teacher($teacher_id)
+    } // get_parent($parent_id)
 
 
-function deleteTeacher($teacher_id) {
+function deleteParents($parent_id) {
         global $db;
 
-        $query= 'DELETE FROM teachers WHERE teacherID= :teacher_id';
+        $query= 'DELETE FROM parents WHERE parentID= :parent_id';
 
         try {
             $statement = $db->prepare($query);
-            $statement->bindValue(':teacher_id', $teacher_id);
+            $statement->bindValue(':parent_id', $parent_id);
             $statement->execute();
             //$result = $statement->fetch(); Not needed
             $statement->closeCursor();
@@ -59,16 +59,16 @@ function deleteTeacher($teacher_id) {
             $error_message = $e->getMessage();
             display_db_error($error_message);
         }
-    } // get_teacher($teacher_id)
+    } // get_parent($parent_id)
 
-function updateTeacher($teacherID, $teacherlast, $teacherFirst, $teacherEmail, $teacherPass) {
+function updateParents($parentID, $parentlast, $parentFirst, $parentEmail, $parentPass) {
         global $db;
 
-        $query= 'UPDATE teachers SET teacherLast="'.$teacherLast.'", teacherFirst="'.$teacherFirst.'", teacherEmail="'.$teacherEmail.'", teacherPass="'.$teacherPass.'"' ;
+        $query= 'UPDATE parents SET parentLast="'.$parentLast.'", parentFirst="'.$parentFirst.'", parentEmail="'.$parentEmail.'", parentPass="'.$parentPass.'"' ;
 
         try {
             $statement = $db->prepare($query);
-            $statement->bindValue(':teacher_id', $teacherID, ':schoolID', $schoolID);
+            $statement->bindValue(':parent_id', $parentID, ':schoolID', $schoolID);
             $statement->execute();
             $result = $statement->fetch();
             $statement->closeCursor();
@@ -77,13 +77,13 @@ function updateTeacher($teacherID, $teacherlast, $teacherFirst, $teacherEmail, $
             $error_message = $e->getMessage();
             display_db_error($error_message);
         }
-    } // get_teacherer($teacher_id)
+    } // get_parent($parent_id)
 
-function addTeacher($teacherLast, $teacherFirst, $teacherEmail, $teacherPass, $roleID) {
+function addTeacher($parentLast, $parentFirst, $parentEmail, $parentPass, $roleID) {
         global $db;
 
-        $query= 'INSERT INTO teachers(teacherLast, teacherFirst, teacherEmail, teacherPass, roleID)
-              VALUES("'.$teacherLast.'", "'.$teacherFirst.'", "'.$teacherEmail.'", "'.$teacherPass.'","'.$roleID.'")';
+        $query= 'INSERT INTO parents(parentLast, parentFirst, parentEmail, parentPass, roleID)
+              VALUES("'.$parentLast.'", "'.$parentFirst.'", "'.$parentEmail.'", "'.$parentPass.'","'.$roleID.'")';
 
         try {
             $statement = $db->prepare($query);
@@ -94,7 +94,7 @@ function addTeacher($teacherLast, $teacherFirst, $teacherEmail, $teacherPass, $r
             $error_message = $e->getMessage();
             display_db_error($error_message);
         }
-    } // get_teacher($teacher_id)
+    } // get_parent($parent_id)
 
 
 
