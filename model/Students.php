@@ -16,15 +16,12 @@ Class Student {
   function getStudents() 
   {  
       global $db; // $db is object of Class Db(), and is out of scope unless made global inside this method
-<<<<<<< HEAD
+
  
 		$query = 'SELECT * FROM students';
 
 		
 
-=======
-		$query = 'SELECT * FROM students, parents WHERE students.parentID = parents.parentID';
->>>>>>> da4c44dc676e026f4c5fb9772db981f5612f9ee1
       try 
       {
 			$statement = $db->prepare($query);

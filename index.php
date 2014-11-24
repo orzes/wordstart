@@ -99,7 +99,7 @@ else if ($controller=='studentAddProcess') {
   $studentResult=$student->addStudent($studentLast, $studentFirst, $parentID, $teacherID, $roleID);
 
   if($studentResult==1) {
-    header("Location: index.php");
+    header("Location: view/studentList.php");
   }
   else {
     print '<p>The student was NOT successfully added.</p>';
