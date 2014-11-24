@@ -65,17 +65,17 @@ debugView.php
 
 
 /**********  controller: list all students in database  **********************************************/
-if ($controller == 'studentslist') {
-  $students=new Student();
+//if ($controller == 'studentslist' || $controller == '') {
+  $student=new Student();
 
   $studentResult=$student->getStudents();
 
   include('view/studentList.php');
-}  /***********************************************************************************************/
+//}  /***********************************************************************************************/
 
 
 /**********  controller:  show the form to add a student  ********************************************/
-else if ($controller == 'studentAddForm') {
+if ($controller == 'studentAddForm') {
   //include('view/studentAddForm.php');
  include('view/studentAddForm.php');
 }  /***********************************************************************************************/
@@ -154,7 +154,7 @@ else if ($controller=='studentsManage') {
   $student=new Student();
   $studentResult=$student->getStudents();
 
-  include('view/studentsManage.php');
+  include('view/manageStudent.php');
 }  /***********************************************************************************************/
 
 
