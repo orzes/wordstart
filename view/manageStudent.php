@@ -7,13 +7,11 @@ print 'Please login to see this page';
 exit();
 }
 
-    require_once('model/database.php');
+  require_once('model/database.php');
 	require_once('model/Students.php');
 	
-    $query = "SELECT * FROM students, parents
-			  WHERE students.studentID = parents.parentID
-              ORDER BY studentLast";
-    $students = $db->query($query); 
+    $model_students = new Student();
+    $students = $model_students->getStudents(); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
