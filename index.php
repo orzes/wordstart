@@ -65,8 +65,8 @@ debugView.php
 
 
 /**********  controller: list all students in database  **********************************************/
-if ($controller == 'studentslist' || $controller == '') {
-  $student=new Student();
+if ($controller == 'studentslist') {
+  $students=new Student();
 
   $studentResult=$student->getStudents();
 
@@ -84,14 +84,14 @@ else if ($controller == 'studentAddForm') {
 /**********  controller: process the html form vars and INSERT a student record  *********************/
 else if ($controller=='studentAddProcess') {
   // include('view/debugView.php');
-    $student=new Student();
+  $student=new Student();
  
 
 
     $studenLast = $_POST['studentLast'];
     $studentFirst = $_POST['studentFirst'];
     $parentID = $_POST['parentID'];
-    $teacherID = $_POST['teacherID'];
+    $teacherID = $_POST['teachID'];
     $roleID = $_POST['roleID'];
 
 
@@ -99,7 +99,7 @@ else if ($controller=='studentAddProcess') {
   $studentResult=$student->addStudent($studentLast, $studentFirst, $parentID, $teacherID, $roleID);
 
   if($studentResult==1) {
-    header("Location: view/studentList.php");
+    header("Location: index.php");
   }
   else {
     print '<p>The student was NOT successfully added.</p>';
@@ -154,7 +154,7 @@ else if ($controller=='studentsManage') {
   $student=new Student();
   $studentResult=$student->getStudents();
 
-  include('view/manageStudent.php');
+  include('view/studentsManage.php');
 }  /***********************************************************************************************/
 
 
