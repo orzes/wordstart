@@ -6,8 +6,6 @@ $teacherLast=$row['teacherLast'];
 $teacherFirst=$row['first_name'];
 $teacherEmail=$row['teacherEmail'];
 $teacherPass=$row['teacherPass'];
-$price=$row['price'];
-$description=$row['description'];
 
 print '
 <div id="main">
